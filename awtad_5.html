@@ -1,0 +1,3110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أوتاد — جذورنا في الأرض</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sand:       #f5efe4;
+  --sand2:      #ede5d4;
+  --sand3:      #e0d5c0;
+  --earth:      #2c1f0e;
+  --earth2:     #3d2c14;
+  --earth3:     #54401e;
+  --gold:       #b8842a;
+  --gold2:      #d4a03c;
+  --gold3:      #e8b84e;
+  --golddim:    rgba(184,132,42,0.14);
+  --golddim2:   rgba(184,132,42,0.07);
+  --terracotta: #a0522d;
+  --sage:       #5c7a4e;
+  --text:       #1a120a;
+  --text2:      #5a4530;
+  --text3:      #9a8060;
+  --border:     rgba(180,140,80,0.18);
+  --border2:    rgba(180,140,80,0.32);
+  --card:       #fffdf8;
+  --r:          14px;
+  --r2:         9px;
+  --r3:         28px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--sand);
+  color: var(--text);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ─── TEXTURE ─── */
+body::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+  opacity: 1;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--sand2); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ─── TOPBAR ─── */
+.topbar {
+  background: var(--earth);
+  color: rgba(255,255,255,0.55);
+  font-size: 11px; letter-spacing: 0.5px;
+  padding: 7px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  position: relative; z-index: 10;
+}
+.topbar-links { display: flex; gap: 20px; }
+.topbar-links a { color: var(--gold3); text-decoration: none; font-size: 11px; }
+.topbar-links a:hover { color: var(--gold2); }
+
+/* ─── NAV ─── */
+.nav {
+  background: rgba(245,239,228,0.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  height: 66px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 200;
+}
+
+/* LOGO */
+.logo { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; }
+.logo-mark {
+  position: relative;
+  width: 40px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-mark svg { width: 40px; height: 44px; }
+.logo-text { font-family: 'Amiri', serif; }
+.logo-ar { font-size: 26px; font-weight: 700; color: var(--earth); line-height: 1; letter-spacing: -0.5px; }
+.logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; font-family: 'Tajawal', sans-serif; margin-top: 1px; }
+
+.nav-links { display: flex; gap: 2px; }
+.nl {
+  padding: 7px 16px; border-radius: var(--r2);
+  font-size: 13px; font-weight: 500; color: var(--text2);
+  cursor: pointer; background: none; border: none; font-family: inherit;
+  transition: all .2s;
+}
+.nl:hover, .nl.on { background: var(--earth); color: var(--sand); }
+
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.notif-btn {
+  width: 36px; height: 36px;
+  background: var(--sand2); border: 1px solid var(--border2);
+  border-radius: var(--r2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 15px; position: relative;
+  transition: all .2s;
+}
+.notif-btn:hover { background: var(--earth); }
+.notif-dot {
+  position: absolute; top: 7px; right: 7px;
+  width: 7px; height: 7px; background: var(--terracotta);
+  border-radius: 50%; border: 1.5px solid var(--sand);
+}
+.btn-in {
+  padding: 8px 18px; background: transparent;
+  border: 1.5px solid var(--border2); border-radius: var(--r2);
+  font-size: 13px; font-weight: 600; color: var(--text2);
+  cursor: pointer; font-family: inherit; transition: all .2s;
+}
+.btn-in:hover { border-color: var(--earth); color: var(--earth); }
+.btn-up {
+  padding: 8px 20px;
+  background: var(--earth); border: none; border-radius: var(--r2);
+  font-size: 13px; font-weight: 700; color: var(--sand);
+  cursor: pointer; font-family: inherit; transition: all .2s;
+}
+.btn-up:hover { background: var(--earth2); }
+.user-chip {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 14px 5px 5px;
+  background: var(--earth); border-radius: 22px;
+  cursor: pointer; transition: all .2s;
+}
+.u-av {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--gold); color: var(--earth);
+  font-size: 11px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.u-name { font-size: 12px; color: var(--sand); font-weight: 600; }
+.u-out { background: none; border: none; color: rgba(255,255,255,0.45); cursor: pointer; font-size: 13px; padding: 2px 4px; }
+.u-out:hover { color: var(--sand); }
+
+/* ─── PAGES ─── */
+.page { display: none; }
+.page.on { display: block; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 92vh;
+  background: var(--earth);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  padding: 80px 48px 60px;
+}
+
+/* geometric bg lines */
+.hero-geo {
+  position: absolute; inset: 0; pointer-events: none;
+  overflow: hidden;
+}
+.hero-geo::before {
+  content: '';
+  position: absolute;
+  top: -30%; right: -10%;
+  width: 70vw; height: 120%;
+  background: var(--earth2);
+  transform: rotate(-12deg);
+  transform-origin: top right;
+}
+.hero-geo::after {
+  content: '';
+  position: absolute;
+  bottom: -20%; right: 5%;
+  width: 40vw; height: 80%;
+  background: rgba(184,132,42,0.06);
+  transform: rotate(-12deg);
+}
+.hero-lines {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.hero-lines svg { width: 100%; height: 100%; }
+
+.hero-content { position: relative; z-index: 2; max-width: 580px; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(184,132,42,0.4);
+  background: rgba(184,132,42,0.1);
+  color: var(--gold3); font-size: 11px; font-weight: 600;
+  padding: 6px 16px; border-radius: 20px;
+  margin-bottom: 28px; letter-spacing: 1px;
+}
+.hero-badge::before { content: '◆'; font-size: 7px; }
+
+.hero h1 {
+  font-family: 'Amiri', serif;
+  font-size: 68px; font-weight: 700;
+  color: var(--sand); line-height: 1.1;
+  letter-spacing: -1px; margin-bottom: 8px;
+}
+.hero h1 em { font-style: normal; color: var(--gold3); }
+.hero-tagline {
+  font-family: 'Amiri', serif;
+  font-size: 22px; color: rgba(255,255,255,0.35);
+  margin-bottom: 20px; font-weight: 400;
+}
+.hero p {
+  font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.55);
+  line-height: 1.85; max-width: 460px; margin-bottom: 40px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-hero-primary {
+  padding: 14px 36px; background: var(--gold); color: var(--earth);
+  border: none; border-radius: var(--r3);
+  font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit;
+  transition: all .25s; display: inline-flex; align-items: center; gap: 8px;
+  letter-spacing: 0.3px;
+}
+.btn-hero-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-hero-ghost {
+  padding: 14px 36px; background: transparent;
+  color: rgba(255,255,255,0.75);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  border-radius: var(--r3);
+  font-size: 15px; font-weight: 500; cursor: pointer; font-family: inherit;
+  transition: all .25s;
+}
+.btn-hero-ghost:hover { border-color: var(--gold3); color: var(--gold3); }
+
+/* hero stats */
+.hero-stats {
+  position: absolute; left: 48px; bottom: 48px; z-index: 2;
+  display: flex; gap: 48px;
+}
+.h-stat { }
+.h-n {
+  font-family: 'Amiri', serif;
+  font-size: 38px; font-weight: 700; color: var(--gold3); line-height: 1;
+}
+.h-l { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 4px; letter-spacing: 0.5px; }
+
+/* hero right card */
+.hero-card {
+  position: absolute; left: 48px; top: 50%; transform: translateY(-50%);
+  z-index: 3; display: none;
+}
+
+/* ─── SEARCH STRIP ─── */
+.search-strip {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 48px;
+}
+.s-tabs { display: flex; gap: 4px; margin-bottom: 18px; }
+.s-tab {
+  padding: 7px 18px; border-radius: 20px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  background: none; border: 1px solid transparent;
+  color: var(--text3); font-family: inherit; transition: all .2s;
+}
+.s-tab.on { background: var(--earth); color: var(--sand); }
+.s-tab:hover:not(.on) { border-color: var(--border2); color: var(--text2); }
+.s-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.s-field {
+  flex: 1; min-width: 160px;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--sand); border: 1.5px solid var(--border);
+  border-radius: var(--r2); padding: 10px 16px; transition: border-color .2s;
+}
+.s-field:focus-within { border-color: var(--gold); }
+.s-field-ico { font-size: 14px; color: var(--text3); }
+.s-field input, .s-field select {
+  border: none; background: none; outline: none;
+  font-family: inherit; font-size: 13px; color: var(--text); flex: 1;
+}
+.s-field select option { background: var(--sand); }
+.btn-search {
+  padding: 12px 32px; background: var(--earth); color: var(--sand);
+  border: none; border-radius: var(--r2);
+  font-size: 14px; font-weight: 800; cursor: pointer; font-family: inherit;
+  display: flex; align-items: center; gap: 8px; transition: all .2s; white-space: nowrap;
+}
+.btn-search:hover { background: var(--gold); color: var(--earth); }
+
+/* ─── STRIP ─── */
+.data-strip {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  background: var(--earth2);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.ds-item {
+  padding: 22px 32px;
+  border-left: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; gap: 14px;
+}
+.ds-item:first-child { border-left: none; }
+.ds-ico {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--golddim); border: 1px solid rgba(184,132,42,0.2);
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.ds-n { font-size: 26px; font-weight: 900; color: var(--gold3); font-family: 'Amiri', serif; }
+.ds-n span { color: rgba(255,255,255,0.4); font-size: 18px; font-family: 'Tajawal', sans-serif; }
+.ds-l { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 3px; letter-spacing: 0.3px; }
+
+/* ─── SECTIONS ─── */
+.sec { padding: 60px 48px; }
+.sec-alt { background: var(--sand2); }
+.sec-hd { margin-bottom: 36px; }
+.sec-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 700; color: var(--gold);
+  letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px;
+}
+.sec-kicker::before { content: ''; width: 18px; height: 1.5px; background: var(--gold); display: inline-block; }
+.sec-title {
+  font-family: 'Amiri', serif;
+  font-size: 34px; font-weight: 700; color: var(--earth);
+  letter-spacing: -0.5px; margin-bottom: 6px;
+}
+.sec-sub { font-size: 14px; color: var(--text3); font-weight: 300; }
+
+/* ─── OFFICE CARDS ─── */
+.off-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 14px; }
+.o-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px; cursor: pointer;
+  transition: all .25s; position: relative; overflow: hidden;
+}
+.o-card::before {
+  content: ''; position: absolute; top: 0; right: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  opacity: 0; transition: opacity .25s;
+}
+.o-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+.o-card:hover::before { opacity: 1; }
+.o-card.prem { border-color: rgba(184,132,42,0.35); }
+.o-card.prem::before { opacity: 1; }
+
+.oc-head { display: flex; gap: 12px; margin-bottom: 14px; }
+.oc-av {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 19px; font-weight: 900; color: var(--sand);
+  flex-shrink: 0; font-family: 'Amiri', serif;
+}
+.oc-nm { font-size: 14px; font-weight: 700; color: var(--earth); margin-bottom: 3px; }
+.oc-loc { font-size: 11px; color: var(--text3); }
+.oc-badges { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 5px; }
+.badge {
+  font-size: 10px; font-weight: 600; padding: 2px 8px;
+  border-radius: 20px; display: inline-flex; align-items: center; gap: 3px;
+  border: 1px solid;
+}
+.b-fal { background: rgba(92,122,78,0.1); color: var(--sage); border-color: rgba(92,122,78,0.25); }
+.b-prem { background: var(--golddim); color: var(--gold); border-color: rgba(184,132,42,0.3); }
+.b-new { background: rgba(160,82,45,0.1); color: var(--terracotta); border-color: rgba(160,82,45,0.25); }
+
+.oc-info { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+.oc-inf { font-size: 11px; color: var(--text3); display: flex; align-items: center; gap: 5px; }
+.oc-inf em { font-style: normal; font-size: 13px; }
+
+.oc-stars { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; }
+.stars-txt { color: var(--gold); font-size: 12px; letter-spacing: 1px; }
+.r-n { font-size: 13px; font-weight: 700; color: var(--earth); }
+.r-c { font-size: 11px; color: var(--text3); }
+
+.oc-acts { display: flex; gap: 7px; }
+.btn-call {
+  flex: 1; padding: 9px;
+  background: rgba(92,122,78,0.1); color: var(--sage);
+  border: 1px solid rgba(92,122,78,0.2); border-radius: var(--r2);
+  font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  transition: all .2s;
+}
+.btn-call:hover { background: var(--sage); color: #fff; }
+.btn-msg {
+  flex: 1; padding: 9px;
+  background: var(--earth); color: var(--sand);
+  border: none; border-radius: var(--r2);
+  font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  transition: all .2s;
+}
+.btn-msg:hover { background: var(--gold); color: var(--earth); }
+.btn-fav {
+  width: 36px; background: var(--sand2); border: 1px solid var(--border);
+  border-radius: var(--r2); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 14px; color: var(--text3); transition: all .2s;
+}
+.btn-fav:hover { color: var(--terracotta); border-color: rgba(160,82,45,0.3); }
+
+/* ─── TOOLBAR ─── */
+.tb { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.tb-inp {
+  flex: 1; min-width: 180px;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: var(--r); padding: 10px 15px; transition: border-color .2s;
+}
+.tb-inp:focus-within { border-color: var(--gold); }
+.tb-inp input { border: none; background: none; outline: none; font-family: inherit; font-size: 13px; color: var(--text); flex: 1; }
+.tb-inp input::placeholder { color: var(--text3); }
+.tb-sel {
+  padding: 10px 14px; background: var(--card);
+  border: 1.5px solid var(--border); border-radius: var(--r);
+  font-family: inherit; font-size: 12px; color: var(--text2);
+  cursor: pointer; outline: none; transition: border-color .2s;
+}
+.tb-sel:focus { border-color: var(--gold); }
+.tb-sel option { background: var(--card); }
+
+/* ─── BULK ─── */
+.bulk {
+  background: var(--earth); border-radius: var(--r2);
+  padding: 13px 20px; display: none; align-items: center;
+  justify-content: space-between; margin-bottom: 16px;
+  border-right: 4px solid var(--gold);
+}
+.bulk.on { display: flex; }
+.bulk-info { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--sand); }
+.bulk-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+.btn-bulk {
+  padding: 9px 20px; background: var(--gold); color: var(--earth);
+  border: none; border-radius: var(--r2);
+  font-size: 13px; font-weight: 800; cursor: pointer; font-family: inherit;
+  display: flex; align-items: center; gap: 7px;
+}
+.btn-bulk:hover { background: var(--gold2); }
+.btn-clr {
+  padding: 8px 14px; background: none;
+  border: 1px solid rgba(255,255,255,0.15); border-radius: var(--r2);
+  font-size: 12px; color: rgba(255,255,255,0.5); cursor: pointer; font-family: inherit;
+}
+
+/* ─── REQ CARDS ─── */
+.req-list { display: flex; flex-direction: column; gap: 12px; }
+.req-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 18px 20px;
+  display: flex; gap: 14px; align-items: flex-start; transition: all .2s;
+}
+.req-card:hover { border-color: var(--gold); }
+.req-ico {
+  width: 46px; height: 46px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.req-body { flex: 1; min-width: 0; }
+.req-title { font-size: 14px; font-weight: 700; color: var(--earth); margin-bottom: 7px; }
+.req-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 6px; }
+.tag { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 20px; border: 1px solid; }
+.tc { background: rgba(44,31,14,0.06); color: var(--earth2); border-color: rgba(44,31,14,0.15); }
+.tp { background: rgba(92,122,78,0.08); color: var(--sage); border-color: rgba(92,122,78,0.2); }
+.ta { background: rgba(160,82,45,0.08); color: var(--terracotta); border-color: rgba(160,82,45,0.2); }
+.td { background: var(--sand2); color: var(--text3); border-color: var(--border); }
+.tw { background: rgba(184,132,42,0.08); color: var(--gold); border-color: rgba(184,132,42,0.2); }
+.req-who { font-size: 11px; color: var(--text3); display: flex; align-items: center; gap: 5px; }
+.req-acts { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.btn-offer {
+  padding: 8px 16px; background: var(--earth); color: var(--sand);
+  border: none; border-radius: var(--r2); font-size: 12px; font-weight: 700;
+  cursor: pointer; font-family: inherit; white-space: nowrap; transition: all .2s;
+}
+.btn-offer:hover { background: var(--gold); color: var(--earth); }
+.btn-det {
+  padding: 8px 16px; background: none;
+  border: 1px solid var(--border); border-radius: var(--r2);
+  font-size: 12px; color: var(--text3); cursor: pointer; font-family: inherit; transition: all .2s;
+}
+.btn-det:hover { border-color: var(--gold); color: var(--gold); }
+
+.rtabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.rtab {
+  padding: 7px 16px; border-radius: 20px;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  background: var(--card); border: 1.5px solid var(--border);
+  color: var(--text3); font-family: inherit; transition: all .2s;
+}
+.rtab.on { background: var(--earth); color: var(--sand); border-color: var(--earth); }
+.rtab:hover:not(.on) { border-color: var(--gold); color: var(--gold); }
+
+/* ─── LISTINGS ─── */
+.lst-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 14px; }
+.l-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden; transition: all .25s; cursor: pointer;
+}
+.l-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+.l-img {
+  height: 155px; display: flex; align-items: center; justify-content: center;
+  font-size: 42px; color: rgba(255,255,255,0.18); position: relative;
+}
+.l-tbadge {
+  position: absolute; top: 10px; right: 10px;
+  background: var(--gold); color: var(--earth);
+  font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 20px;
+}
+.l-sbadge {
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(0,0,0,0.45); color: rgba(255,255,255,0.8);
+  font-size: 9px; padding: 3px 8px; border-radius: 8px; backdrop-filter: blur(4px);
+}
+.l-ow {
+  position: absolute; bottom: 10px; right: 10px;
+  background: rgba(0,0,0,0.5); color: rgba(255,255,255,0.75);
+  font-size: 9px; padding: 3px 8px; border-radius: 8px;
+}
+.l-body { padding: 14px; }
+.l-price {
+  font-family: 'Amiri', serif;
+  font-size: 22px; font-weight: 700; color: var(--earth); margin-bottom: 3px;
+}
+.l-price small { font-size: 12px; font-weight: 400; color: var(--text3); font-family: 'Tajawal', sans-serif; }
+.l-title { font-size: 12px; color: var(--text2); margin-bottom: 8px; line-height: 1.5; }
+.l-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+.l-acts { display: flex; gap: 7px; }
+.btn-cnt {
+  flex: 1; padding: 9px; background: var(--earth); color: var(--sand);
+  border: none; border-radius: var(--r2);
+  font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .2s;
+}
+.btn-cnt:hover { background: var(--gold); color: var(--earth); }
+.btn-hrt {
+  width: 36px; background: var(--sand2); border: 1px solid var(--border);
+  border-radius: var(--r2); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 14px; color: var(--text3); transition: all .2s;
+}
+.btn-hrt:hover,.btn-hrt.on { color: var(--terracotta); border-color: rgba(160,82,45,0.3); background: rgba(160,82,45,0.07); }
+
+/* ─── MAP PH ─── */
+.map-ph {
+  background: var(--sand2); border: 1.5px dashed var(--border2);
+  border-radius: var(--r); height: 185px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 8px; color: var(--text3);
+  margin-bottom: 20px; cursor: pointer; transition: all .2s;
+}
+.map-ph:hover { border-color: var(--gold); color: var(--gold); }
+.map-ph-ico { font-size: 34px; }
+.map-ph span { font-size: 12px; }
+
+/* ─── DASHBOARD ─── */
+.dash-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 24px; }
+.dstat {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 20px; position: relative; overflow: hidden;
+}
+.dstat::after {
+  content: ''; position: absolute; top: 0; right: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.dstat-ico { font-size: 22px; margin-bottom: 12px; }
+.dstat-n { font-family: 'Amiri', serif; font-size: 32px; font-weight: 700; color: var(--earth); line-height: 1; margin-bottom: 4px; }
+.dstat-l { font-size: 11px; color: var(--text3); }
+.dstat-chg { font-size: 11px; margin-top: 5px; }
+.up { color: var(--sage); } .dn { color: var(--terracotta); }
+
+.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.d-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 20px; }
+.d-title { font-size: 13px; font-weight: 700; color: var(--earth); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+.act-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.act-row:last-child { border-bottom: none; }
+.a-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.a-txt { flex: 1; font-size: 12px; color: var(--text2); }
+.a-time { font-size: 10px; color: var(--text3); white-space: nowrap; }
+.prog-row { margin-bottom: 12px; }
+.prog-lbl { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); margin-bottom: 5px; }
+.prog-track { height: 5px; background: var(--sand2); border-radius: 3px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 3px; }
+.notif-row { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.notif-row:last-child { border-bottom: none; }
+.notif-row.unr { margin: 0 -20px; padding: 9px 20px; background: var(--golddim2); }
+.n-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.n-body { flex: 1; }
+.n-txt { font-size: 12px; color: var(--text); }
+.n-time { font-size: 10px; color: var(--text3); margin-top: 2px; }
+
+/* ─── PROFILE ─── */
+.prof-wrap { display: grid; grid-template-columns: 240px 1fr; gap: 16px; }
+.p-side { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 24px; height: fit-content; }
+.p-av-wrap { text-align: center; margin-bottom: 16px; }
+.p-av {
+  width: 78px; height: 78px; border-radius: 50%;
+  background: var(--earth); color: var(--gold3);
+  font-family: 'Amiri', serif; font-size: 30px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 10px;
+  border: 3px solid var(--gold);
+}
+.p-nm { font-size: 15px; font-weight: 700; color: var(--earth); font-family: 'Amiri', serif; }
+.p-role { font-size: 11px; color: var(--text3); margin-top: 3px; letter-spacing: 0.5px; }
+.p-stars { display: flex; justify-content: center; gap: 2px; margin: 8px 0; color: var(--gold); font-size: 13px; }
+.p-menu { display: flex; flex-direction: column; gap: 2px; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 14px; }
+.pm {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: var(--r2);
+  font-size: 13px; color: var(--text3);
+  cursor: pointer; background: none; border: none;
+  font-family: inherit; width: 100%; text-align: right; transition: all .2s;
+}
+.pm:hover, .pm.on { background: var(--sand); color: var(--earth); }
+.pm.on { font-weight: 700; color: var(--gold); }
+.pm em { font-style: normal; font-size: 14px; width: 18px; }
+.p-cont { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 24px; }
+.pt { display: none; } .pt.on { display: block; }
+.pt-title { font-family: 'Amiri', serif; font-size: 18px; font-weight: 700; color: var(--earth); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+
+/* ─── FORMS ─── */
+.fr { margin-bottom: 14px; }
+.fr2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.fl { font-size: 11px; font-weight: 700; color: var(--text3); margin-bottom: 5px; display: block; letter-spacing: 0.5px; text-transform: uppercase; }
+.fi {
+  width: 100%; padding: 10px 14px;
+  background: var(--sand); border: 1.5px solid var(--border);
+  border-radius: var(--r2); font-family: inherit; font-size: 13px; color: var(--text); outline: none;
+  transition: border-color .2s;
+}
+.fi:focus { border-color: var(--gold); background: var(--card); }
+textarea.fi { resize: none; }
+.fi option { background: var(--sand); }
+
+/* ─── MODAL ─── */
+.moverlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,18,10,0.7); backdrop-filter: blur(6px);
+  z-index: 1000; align-items: center; justify-content: center; padding: 20px;
+}
+.moverlay.on { display: flex; }
+.mbox {
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: var(--r); padding: 28px; width: 100%; max-width: 500px;
+  max-height: 90vh; overflow-y: auto; transition: transform .1s;
+}
+.mbox-top {
+  background: var(--earth);
+  margin: -28px -28px 22px; padding: 20px 28px;
+  border-radius: var(--r) var(--r) 0 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.mtitle { font-family: 'Amiri', serif; font-size: 18px; font-weight: 700; color: var(--sand); }
+.mx { background: rgba(255,255,255,0.1); border: none; border-radius: 6px; cursor: pointer; font-size: 16px; color: var(--sand); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
+.mx:hover { background: rgba(255,255,255,0.2); }
+.m-acts { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+.btn-cancel { padding: 10px 20px; background: var(--sand2); border: 1px solid var(--border); border-radius: var(--r2); font-family: inherit; font-size: 13px; cursor: pointer; color: var(--text3); }
+.btn-submit { padding: 10px 24px; background: var(--earth); color: var(--sand); border: none; border-radius: var(--r2); font-family: inherit; font-size: 14px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all .2s; }
+.btn-submit:hover { background: var(--gold); color: var(--earth); }
+.toast2 { display: none; background: rgba(92,122,78,0.12); color: var(--sage); border: 1px solid rgba(92,122,78,0.25); padding: 10px 14px; border-radius: var(--r2); font-size: 12px; margin-top: 12px; align-items: center; gap: 8px; }
+.toast2.on { display: flex; }
+.f-err { display: none; background: rgba(160,82,45,0.1); color: var(--terracotta); border: 1px solid rgba(160,82,45,0.25); padding: 9px 12px; border-radius: var(--r2); font-size: 12px; margin-bottom: 10px; align-items: center; gap: 7px; }
+.f-err.on { display: flex; }
+
+/* ─── AUTH WALL ─── */
+.auth-wall {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,18,10,0.85); backdrop-filter: blur(10px);
+  z-index: 2000; align-items: center; justify-content: center; padding: 20px;
+}
+.auth-wall.on { display: flex; }
+.auth-box {
+  background: var(--card); border-radius: var(--r);
+  border: 1px solid var(--border2);
+  padding: 40px 36px; max-width: 460px; width: 100%; text-align: center;
+}
+.auth-icon { font-size: 52px; margin-bottom: 16px; display: block; }
+.auth-title { font-family: 'Amiri', serif; font-size: 24px; font-weight: 700; color: var(--earth); margin-bottom: 8px; }
+.auth-sub { font-size: 14px; color: var(--text3); margin-bottom: 6px; }
+.auth-page { color: var(--gold); font-weight: 700; }
+.auth-desc { font-size: 13px; color: var(--text3); margin-bottom: 28px; line-height: 1.7; }
+.auth-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.btn-aw-login { padding: 13px 32px; background: var(--earth); color: var(--sand); border: none; border-radius: var(--r3); font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer; transition: all .2s; }
+.btn-aw-login:hover { background: var(--gold); color: var(--earth); }
+.btn-aw-reg { padding: 13px 32px; background: var(--golddim); color: var(--gold); border: 1.5px solid rgba(184,132,42,0.35); border-radius: var(--r3); font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; transition: all .2s; }
+.btn-aw-reg:hover { background: var(--gold); color: var(--earth); border-color: var(--gold); }
+.auth-demo { margin-top: 14px; font-size: 12px; color: var(--text3); }
+.auth-demo a { color: var(--gold); text-decoration: none; font-weight: 700; }
+
+/* ─── SUB CARDS ─── */
+.sub-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.sub-c { border: 1.5px solid var(--border); border-radius: var(--r); padding: 20px; text-align: center; transition: all .2s; }
+.sub-c:hover { border-color: var(--gold); }
+.sub-c.cur { border-color: var(--gold); background: var(--golddim2); }
+.sub-badge { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+.sub-nm { font-family: 'Amiri', serif; font-size: 16px; font-weight: 700; color: var(--earth); margin-bottom: 6px; }
+.sub-pr { font-family: 'Amiri', serif; font-size: 28px; font-weight: 700; color: var(--gold); }
+.sub-per { font-size: 11px; color: var(--text3); margin-bottom: 12px; }
+.sub-ft { font-size: 12px; color: var(--text3); line-height: 2; }
+
+/* ─── HOW IT WORKS ─── */
+.how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.how-card { text-align: center; padding: 36px 24px; background: var(--card); border: 1px solid var(--border); border-radius: var(--r); transition: all .2s; }
+.how-card:hover { border-color: var(--gold); }
+.how-n { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-family: 'Amiri', serif; font-size: 24px; font-weight: 700; }
+.how-t { font-family: 'Amiri', serif; font-size: 16px; font-weight: 700; color: var(--earth); margin-bottom: 8px; }
+.how-p { font-size: 13px; color: var(--text3); line-height: 1.7; }
+
+/* ─── FOOTER ─── */
+.footer { background: var(--earth); padding: 52px 48px 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+.footer-logo-ar { font-family: 'Amiri', serif; font-size: 28px; color: var(--sand); font-weight: 700; display: block; margin-bottom: 10px; }
+.footer-logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; display: block; margin-bottom: 12px; }
+.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.8; }
+.footer-col h5 { font-size: 11px; font-weight: 700; color: var(--sand); margin-bottom: 14px; letter-spacing: 1.5px; text-transform: uppercase; opacity: .6; }
+.footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; margin-bottom: 8px; transition: color .2s; }
+.footer-col a:hover { color: var(--gold3); }
+.footer-bot { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(255,255,255,0.25); }
+.soc-row { display: flex; gap: 8px; }
+.soc { width: 32px; height: 32px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r2); display: flex; align-items: center; justify-content: center; font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; transition: all .2s; }
+.soc:hover { background: var(--golddim); border-color: rgba(184,132,42,0.4); color: var(--gold3); }
+
+.more-wrap { text-align: center; margin-top: 24px; }
+.btn-more { padding: 11px 28px; background: none; border: 1.5px solid var(--border2); border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--text2); cursor: pointer; font-family: inherit; transition: all .2s; }
+.btn-more:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ─── GLOBAL TOAST ─── */
+#g-toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--earth2); border: 1px solid var(--border2);
+  border-right: 3px solid var(--gold);
+  color: var(--sand); padding: 12px 24px;
+  border-radius: 28px; font-size: 13px; font-weight: 600;
+  z-index: 9999; transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .35s;
+  opacity: 0; white-space: nowrap; pointer-events: none;
+}
+#g-toast.on { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* ─── CONTACT BUTTONS ─── */
+.contact-row { display:flex; gap:6px; margin-top:12px; flex-wrap:wrap; }
+.btn-wa {
+  flex:1; padding:9px 10px;
+  background:#25D366; color:#fff;
+  border:none; border-radius:var(--r2);
+  font-size:12px; font-weight:700; cursor:pointer; font-family:inherit;
+  display:flex; align-items:center; justify-content:center; gap:5px;
+  transition:all .2s; white-space:nowrap;
+}
+.btn-wa:hover { background:#1ebe5d; transform:translateY(-1px); }
+.btn-inner {
+  flex:1; padding:9px 10px;
+  background:var(--golddim); color:var(--gold);
+  border:1px solid rgba(184,132,42,0.25); border-radius:var(--r2);
+  font-size:12px; font-weight:700; cursor:pointer; font-family:inherit;
+  display:flex; align-items:center; justify-content:center; gap:5px;
+  transition:all .2s; white-space:nowrap;
+}
+.btn-inner:hover { background:var(--gold); color:var(--earth); }
+.btn-tel {
+  width:38px; padding:9px;
+  background:rgba(92,122,78,0.1); color:var(--sage);
+  border:1px solid rgba(92,122,78,0.22); border-radius:var(--r2);
+  font-size:14px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .2s;
+}
+.btn-tel:hover { background:var(--sage); color:#fff; }
+
+/* ─── CHAT PANEL ─── */
+.chat-panel {
+  position:fixed; left:0; bottom:0; width:360px; z-index:500;
+  background:var(--card); border:1px solid var(--border2);
+  border-radius:var(--r) var(--r) 0 0;
+  box-shadow:0 -8px 40px rgba(26,18,10,0.18);
+  display:flex; flex-direction:column;
+  transform:translateY(100%); transition:transform .3s cubic-bezier(.34,1.2,.64,1);
+  max-height:520px;
+}
+.chat-panel.open { transform:translateY(0); }
+.cp-head {
+  background:var(--earth); padding:14px 16px;
+  border-radius:var(--r) var(--r) 0 0;
+  display:flex; align-items:center; gap:10px;
+}
+.cp-av {
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:15px; font-weight:800; color:var(--earth); background:var(--gold);
+  flex-shrink:0;
+}
+.cp-name { font-size:14px; font-weight:700; color:var(--sand); flex:1; }
+.cp-status { font-size:10px; color:rgba(255,255,255,0.45); margin-top:1px; display:flex; align-items:center; gap:4px; }
+.cp-status::before { content:''; width:6px; height:6px; background:#4ade80; border-radius:50%; }
+.cp-close {
+  background:rgba(255,255,255,0.1); border:none; border-radius:6px;
+  width:28px; height:28px; cursor:pointer; color:var(--sand);
+  display:flex; align-items:center; justify-content:center; font-size:15px;
+}
+.cp-close:hover { background:rgba(255,255,255,0.2); }
+.cp-ref {
+  padding:8px 14px; background:var(--golddim2);
+  border-bottom:1px solid var(--border);
+  font-size:11px; color:var(--text3);
+  display:flex; align-items:center; gap:6px;
+}
+.cp-ref-tag {
+  background:var(--golddim); color:var(--gold);
+  border:1px solid rgba(184,132,42,0.25);
+  border-radius:6px; padding:2px 8px; font-size:10px; font-weight:700;
+}
+.cp-msgs {
+  flex:1; overflow-y:auto; padding:14px;
+  display:flex; flex-direction:column; gap:8px;
+  min-height:200px;
+}
+.cm-row { display:flex; gap:7px; align-items:flex-end; }
+.cm-row.mine { flex-direction:row-reverse; }
+.cm-av {
+  width:26px; height:26px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; font-weight:800; flex-shrink:0; color:#fff;
+}
+.cm-bubble {
+  max-width:76%; padding:8px 12px;
+  border-radius:var(--r); font-size:12px; line-height:1.55;
+}
+.cm-bubble.other { background:var(--sand2); color:var(--text); border-bottom-right-radius:4px; }
+.cm-bubble.mine { background:var(--earth); color:var(--sand); border-bottom-left-radius:4px; }
+.cm-time { font-size:9px; margin-top:3px; color:var(--text3); }
+.cm-time.mine { text-align:left; }
+.typing-dots { display:flex; gap:3px; padding:10px 12px; background:var(--sand2); border-radius:var(--r); border-bottom-right-radius:4px; width:fit-content; }
+.td { width:5px; height:5px; background:var(--text3); border-radius:50%; animation:bounce .9s infinite; }
+.td:nth-child(2){animation-delay:.15s}.td:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+.cp-input-row {
+  padding:10px 12px; border-top:1px solid var(--border);
+  display:flex; gap:8px; align-items:flex-end;
+}
+.cp-input-wrap {
+  flex:1; background:var(--sand); border:1px solid var(--border2);
+  border-radius:var(--r2); padding:8px 12px;
+  display:flex; align-items:flex-end; gap:6px;
+}
+.cp-input-wrap textarea {
+  border:none; background:none; outline:none;
+  font-family:inherit; font-size:13px; color:var(--text);
+  flex:1; resize:none; max-height:70px; line-height:1.5;
+}
+.cp-input-wrap textarea::placeholder { color:var(--text3); }
+.cp-send {
+  width:34px; height:34px; background:var(--earth); border:none;
+  border-radius:var(--r2); cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--sand); font-size:15px; transition:all .2s; flex-shrink:0;
+}
+.cp-send:hover { background:var(--gold); color:var(--earth); }
+
+/* ─── CHAT TOGGLE ─── */
+.chat-fab {
+  position:fixed; left:20px; bottom:20px; z-index:499;
+  width:52px; height:52px; background:var(--earth);
+  border-radius:50%; border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; color:var(--gold);
+  box-shadow:0 4px 20px rgba(26,18,10,0.25);
+  transition:all .2s;
+}
+.chat-fab:hover { background:var(--gold); color:var(--earth); transform:scale(1.08); }
+.chat-fab-badge {
+  position:absolute; top:2px; right:2px;
+  width:18px; height:18px; background:var(--terracotta);
+  border-radius:50%; font-size:9px; font-weight:700;
+  color:#fff; display:flex; align-items:center; justify-content:center;
+  border:2px solid var(--sand);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+.hero-content { animation: fadeUp .8s ease both; }
+.hero-stats { animation: fadeUp .8s .3s ease both; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .topbar, .hero-stats { display: none; }
+  .nav, .search-strip, .sec, .footer { padding-right: 20px; padding-left: 20px; }
+  .hero { padding: 60px 20px 40px; min-height: auto; }
+  .hero h1 { font-size: 40px; }
+  .data-strip { grid-template-columns: 1fr 1fr; }
+  .dash-stats { grid-template-columns: 1fr 1fr; }
+  .dash-grid, .prof-wrap { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .how-grid, .sub-grid { grid-template-columns: 1fr; }
+  .fr2 { grid-template-columns: 1fr; }
+}
+
+/* ─── ACCT TYPE BTNS ─── */
+.acct-type-btn { flex:1; padding:10px 6px; border:1.5px solid var(--border); border-radius:var(--r2); text-align:center; cursor:pointer; font-size:12px; color:var(--text3); transition:all .2s; font-family:inherit; font-weight:500; }
+.acct-type-btn.on { border-color:var(--gold); color:var(--gold); background:var(--golddim); font-weight:700; }
+
+/* ─── SUBSCRIPTION GATE OVERLAY ─── */
+.page-gate {
+  position: relative;
+}
+.page-gate::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 400;
+  background: rgba(245,239,228,0.7);
+  backdrop-filter: blur(8px);
+  pointer-events: all;
+}
+.gate-banner {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 401; text-align: center;
+  background: var(--card);
+  border: 1.5px solid var(--gold);
+  border-radius: var(--r);
+  padding: 32px 40px;
+  width: 360px;
+  box-shadow: 0 16px 48px rgba(26,18,10,0.18);
+  animation: popIn .35s cubic-bezier(.34,1.4,.64,1) both;
+}
+@keyframes popIn {from{opacity:0;transform:translate(-50%,-50%) scale(.88)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.gate-banner-icon { font-size: 48px; margin-bottom: 12px; }
+.gate-banner-title { font-family:'Amiri',serif; font-size: 20px; font-weight: 700; color: var(--earth); margin-bottom: 8px; }
+.gate-banner-sub { font-size: 13px; color: var(--text3); margin-bottom: 20px; line-height: 1.65; }
+.gate-free-btn {
+  width: 100%; padding: 12px;
+  background: var(--earth); color: var(--sand);
+  border: none; border-radius: var(--r2);
+  font-family: inherit; font-size: 14px; font-weight: 800;
+  cursor: pointer; transition: all .2s; margin-bottom: 8px;
+}
+.gate-free-btn:hover { background: var(--gold); color: var(--earth); }
+.gate-login-link {
+  font-size: 13px; color: var(--text3);
+}
+.gate-login-link a { color: var(--gold); font-weight: 700; text-decoration: none; }
+
+/* blur cards/buttons when not logged in */
+body.guest .oc-acts,
+body.guest .contact-row,
+body.guest .req-acts,
+body.guest .l-acts { filter: blur(4px); pointer-events: none; user-select: none; }
+body.guest .oc-acts::after,
+body.guest .contact-row::after,
+body.guest .req-acts::after { content: '🔒 اشترك للتواصل'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--gold); pointer-events:all; cursor:pointer; }
+body.guest .o-card, body.guest .l-card, body.guest .req-card { position: relative; }
+
+/* ─── NOTIFICATIONS ─── */
+.notif-panel{position:fixed;top:66px;left:20px;width:340px;background:var(--card);border:1px solid var(--border2);border-radius:var(--r);box-shadow:0 12px 40px rgba(26,18,10,0.16);z-index:450;display:none;max-height:500px;overflow:hidden;flex-direction:column}
+.notif-panel.open{display:flex}
+.np-head{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.np-title{font-size:14px;font-weight:700;color:var(--earth);font-family:'Amiri',serif}
+.np-mark{font-size:11px;color:var(--gold);cursor:pointer;border:none;background:none;font-family:inherit}
+.np-list{overflow-y:auto;flex:1}
+.np-item{display:flex;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.np-item:hover{background:var(--sand2)}
+.np-item.unread{background:var(--golddim2)}
+.np-ico{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.np-body{flex:1;min-width:0}
+.np-txt{font-size:12px;color:var(--text);line-height:1.5;margin-bottom:2px}
+.np-txt strong{color:var(--earth)}
+.np-time{font-size:10px;color:var(--text3)}
+.np-empty{padding:30px;text-align:center;color:var(--text3);font-size:13px}
+.np-footer{padding:10px 16px;border-top:1px solid var(--border);text-align:center;flex-shrink:0}
+.np-footer button{background:none;border:none;color:var(--gold);font-size:12px;cursor:pointer;font-family:inherit;font-weight:600}
+
+/* ─── RATING STARS ─── */
+.rating-widget{display:flex;flex-direction:column;gap:8px}
+.star-row{display:flex;gap:4px}
+.s-star{font-size:28px;color:var(--sand2);cursor:pointer;transition:all .15s;line-height:1;user-select:none}
+.s-star.lit,.s-star:hover{color:var(--gold)}
+.rating-summary{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.big-score{font-family:'Amiri',serif;font-size:44px;font-weight:700;color:var(--earth);line-height:1}
+.score-bars{flex:1}
+.bar-row{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.bar-row span{font-size:10px;color:var(--text3);width:20px;text-align:center;flex-shrink:0}
+.bar-track{flex:1;height:5px;background:var(--sand2);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;background:var(--gold);border-radius:3px}
+.review-item{padding:12px 0;border-bottom:1px solid var(--border)}
+.review-item:last-child{border-bottom:none}
+.review-head{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.rev-av{width:30px;height:30px;border-radius:50%;background:var(--earth2);color:var(--gold3);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rev-name{font-size:13px;font-weight:600;color:var(--earth)}
+.rev-date{font-size:10px;color:var(--text3);margin-right:auto}
+.rev-stars{font-size:12px;color:var(--gold)}
+.rev-txt{font-size:12px;color:var(--text2);line-height:1.6}
+.write-review{background:var(--sand2);border-radius:var(--r2);padding:14px;margin-top:12px}
+.wr-title{font-size:13px;font-weight:700;color:var(--earth);margin-bottom:10px}
+
+/* ─── FAL CHECKER ─── */
+.fal-box{border:1.5px solid var(--border2);border-radius:var(--r);padding:16px;margin-bottom:16px;transition:border-color .2s}
+.fal-box.valid{border-color:var(--sage);background:rgba(92,122,78,0.04)}
+.fal-box.invalid{border-color:var(--terracotta);background:rgba(160,82,45,0.04)}
+.fal-box.checking{border-color:var(--gold);background:var(--golddim2)}
+.fal-status{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:var(--r2);font-size:12px;font-weight:600;margin-top:10px}
+.fal-valid{background:rgba(92,122,78,0.12);color:var(--sage);border:1px solid rgba(92,122,78,0.2)}
+.fal-invalid{background:rgba(160,82,45,0.1);color:var(--terracotta);border:1px solid rgba(160,82,45,0.2)}
+.fal-checking-s{background:var(--golddim);color:var(--gold);border:1px solid rgba(184,132,42,0.25)}
+.fal-details{margin-top:8px;font-size:11px;color:var(--text3);line-height:1.7}
+
+/* ─── ADMIN PANEL ─── */
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.admin-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;position:relative;overflow:hidden}
+.admin-stat::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.as-ico{font-size:22px;margin-bottom:8px}
+.as-n{font-family:'Amiri',serif;font-size:28px;font-weight:700;color:var(--earth);line-height:1;margin-bottom:3px}
+.as-l{font-size:11px;color:var(--text3)}
+.as-chg{font-size:11px;margin-top:4px}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.admin-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px}
+.admin-card-title{font-size:13px;font-weight:700;color:var(--earth);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;font-family:'Amiri',serif}
+.user-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.user-row:last-child{border-bottom:none}
+.user-av-sm{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:#fff}
+.user-info{flex:1;min-width:0}
+.user-nm{font-size:12px;font-weight:600;color:var(--earth)}
+.user-role{font-size:10px;color:var(--text3)}
+.user-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px}
+.ub-broker{background:rgba(92,122,78,0.1);color:var(--sage);border:1px solid rgba(92,122,78,0.2)}
+.ub-owner{background:var(--golddim);color:var(--gold);border:1px solid rgba(184,132,42,0.2)}
+.ub-seeker{background:rgba(44,31,14,0.07);color:var(--earth2);border:1px solid rgba(44,31,14,0.15)}
+.ub-investor{background:rgba(160,82,45,0.1);color:var(--terracotta);border:1px solid rgba(160,82,45,0.2)}
+.admin-table{width:100%;font-size:12px;border-collapse:collapse}
+.admin-table th{text-align:right;padding:8px 10px;font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid var(--border);background:var(--sand)}
+.admin-table td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--text2)}
+.admin-table tr:last-child td{border-bottom:none}
+.admin-table tr:hover td{background:var(--sand)}
+.tbl-badge{font-size:9px;padding:2px 7px;border-radius:20px;font-weight:600}
+.tbl-active{background:rgba(92,122,78,0.1);color:var(--sage)}
+.tbl-pending{background:var(--golddim);color:var(--gold)}
+.tbl-blocked{background:rgba(160,82,45,0.1);color:var(--terracotta)}
+.admin-action-btn{padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:none;font-family:inherit;font-size:11px;cursor:pointer;color:var(--text3);transition:all .15s}
+.admin-action-btn:hover{border-color:var(--gold);color:var(--gold)}
+.admin-action-btn.danger:hover{border-color:var(--terracotta);color:var(--terracotta)}
+.chart-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.chart-bar-label{font-size:11px;color:var(--text3);width:60px;flex-shrink:0;text-align:right}
+.chart-bar-track{flex:1;height:18px;background:var(--sand2);border-radius:4px;overflow:hidden}
+.chart-bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-left:8px}
+.chart-bar-val{font-size:10px;font-weight:700;color:#fff}
+.admin-login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;padding:40px}
+.admin-login-box{background:var(--card);border:1.5px solid var(--border2);border-radius:var(--r);padding:32px;width:100%;max-width:400px;text-align:center}
+
+/* ─── INVESTIGATION PANEL ─── */
+.inv-date-quick{padding:5px 14px;background:var(--card);border:1px solid var(--border);border-radius:20px;font-family:inherit;font-size:12px;color:var(--text3);cursor:pointer;transition:all .2s}
+.inv-date-quick.on{background:var(--earth);color:var(--sand);border-color:var(--earth)}
+.inv-date-quick:hover:not(.on){border-color:var(--gold);color:var(--gold)}
+.inv-result-card{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--r2);background:var(--sand);margin-bottom:8px;cursor:pointer;transition:all .2s}
+.inv-result-card:hover{border-color:var(--gold);background:var(--golddim2)}
+.inv-result-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;flex-shrink:0}
+.inv-result-info{flex:1;min-width:0}
+.inv-result-name{font-size:13px;font-weight:700;color:var(--earth)}
+.inv-result-meta{font-size:11px;color:var(--text3);margin-top:2px}
+.inv-result-btn{padding:6px 14px;background:var(--earth);color:var(--sand);border:none;border-radius:var(--r2);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s}
+.inv-result-btn:hover{background:var(--gold);color:var(--earth)}
+.inv-tab{padding:7px 14px;border-radius:var(--r2);font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;color:var(--text3);font-family:inherit;transition:all .2s}
+.inv-tab.on{background:var(--card);color:var(--earth);font-weight:700}
+.inv-tab:hover:not(.on){color:var(--text2)}
+.inv-tab-content{animation:fadeUp .25s ease both}
+.msg-thread{border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:10px}
+.msg-thread-head{background:var(--sand2);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid var(--border)}
+.msg-thread-name{font-size:12px;font-weight:700;color:var(--earth)}
+.msg-thread-meta{font-size:10px;color:var(--text3)}
+.msg-thread-body{padding:12px 14px;display:none;max-height:220px;overflow-y:auto}
+.msg-thread-body.open{display:block}
+.msg-line{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start}
+.msg-line-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0}
+.msg-line-bubble{background:var(--sand);border-radius:var(--r2);padding:7px 10px;font-size:12px;color:var(--text);max-width:80%}
+.msg-line-time{font-size:9px;color:var(--text3);margin-top:3px}
+.ad-row{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.ad-row:last-child{border-bottom:none}
+.ad-ico{width:36px;height:36px;border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ad-info{flex:1}
+.ad-title{font-size:12px;font-weight:700;color:var(--earth);margin-bottom:3px}
+.ad-meta{font-size:11px;color:var(--text3);display:flex;gap:8px;flex-wrap:wrap}
+.ad-status{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px}
+.activity-log-row{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--text2);align-items:center}
+.activity-log-row:last-child{border-bottom:none}
+.log-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.log-time{font-size:10px;color:var(--text3);white-space:nowrap;margin-right:auto}
+</style>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+  import { getFirestore, collection, addDoc, getDocs, doc, setDoc, getDoc, query, orderBy, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDvu88RnOMf4kYL5i20HLoms4uh2OEz1Ko",
+    authDomain: "awtad-realty.firebaseapp.com",
+    projectId: "awtad-realty",
+    storageBucket: "awtad-realty.firebasestorage.app",
+    messagingSenderId: "854100127298",
+    appId: "1:854100127298:web:2eb3a16d63ead58f11c7db",
+    measurementId: "G-TK507CMJ3E"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const googleProvider = new GoogleAuthProvider();
+
+  // ── AUTH STATE LISTENER ──
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      isLoggedIn = true;
+      // get user profile from Firestore
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      if (userDoc.exists()) {
+        currentUser = { uid: user.uid, ...userDoc.data() };
+      } else {
+        currentUser = { uid: user.uid, name: user.displayName || user.email.split('@')[0], email: user.email, acctType: '🔍 باحث عن عقار' };
+      }
+      updateNav();
+      checkAdminAccess();
+      document.body.classList.remove('guest');
+      gToast('مرحباً ' + currentUser.name.split(' ')[0] + '! ✅');
+      // load real data
+      loadOffices();
+      loadListings();
+      loadRequests();
+    } else {
+      isLoggedIn = false;
+      currentUser = null;
+      updateNav();
+      document.body.classList.add('guest');
+      renderOff();
+      renderLst();
+      renderReq();
+    }
+  });
+
+  // ── REGISTER ──
+  window.doRegister = async function() {
+    const nm = document.getElementById('r-name').value.trim();
+    const ph = document.getElementById('r-phone').value.trim();
+    const pw = document.getElementById('r-pw').value.trim();
+    const email = document.getElementById('r-email')?.value.trim() || ph + '@awtad.temp';
+    const err = document.getElementById('r-err');
+    if (!nm || !ph || !pw) { err.classList.add('on'); err.textContent = '⚠️ يرجى تعبئة الحقول المطلوبة'; return; }
+    const typeEl = document.querySelector('#m-reg .acct-type-btn.on');
+    const acctType = typeEl ? typeEl.textContent.trim() : '🔍 باحث عن عقار';
+    try {
+      const userEmail = email.includes('@') ? email : ph + '@awtadrealty.com';
+      const cred = await createUserWithEmailAndPassword(auth, userEmail, pw);
+      const userData = { name: nm, phone: ph, email: userEmail, acctType, city: 'المملكة', fal: document.getElementById('r-fal')?.value || '', createdAt: serverTimestamp() };
+      await setDoc(doc(db, 'users', cred.user.uid), userData);
+      hideM('m-reg');
+      gToast('أهلاً ' + nm + '! تم إنشاء حسابك 🎉');
+    } catch (e) {
+      err.classList.add('on');
+      err.textContent = e.code === 'auth/email-already-in-use' ? '⚠️ هذا الإيميل مسجل مسبقاً' : '⚠️ ' + e.message;
+    }
+  };
+
+  // ── LOGIN ──
+  window.doLogin = async function() {
+    const ph = document.getElementById('l-phone').value.trim();
+    const pw = document.getElementById('l-pass').value.trim();
+    const err = document.getElementById('l-err');
+    if (!ph || !pw) { err.classList.add('on'); err.textContent = '⚠️ يرجى إدخال الإيميل وكلمة المرور'; return; }
+    try {
+      await signInWithEmailAndPassword(auth, ph, pw);
+      hideM('m-login');
+      if (pendingAction) { pendingAction(); pendingAction = null; }
+    } catch (e) {
+      err.classList.add('on');
+      err.textContent = '⚠️ إيميل أو كلمة مرور غير صحيحة';
+    }
+  };
+
+  // ── GOOGLE LOGIN ──
+  window.doGoogleLogin = async function() {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      if (!userDoc.exists()) {
+        await setDoc(doc(db, 'users', user.uid), { name: user.displayName, email: user.email, acctType: '🔍 باحث عن عقار', phone: '', city: 'المملكة', fal: '', createdAt: serverTimestamp() });
+      }
+      hideM('m-login'); hideM('m-reg'); hideWall();
+      if (pendingAction) { pendingAction(); pendingAction = null; }
+    } catch(e) { gToast('⚠️ خطأ في تسجيل الدخول بجوجل'); }
+  };
+
+  // ── LOGOUT ──
+  window.doLogout = async function() {
+    await signOut(auth);
+    closeChat();
+    goPage('home');
+    gToast('تم تسجيل الخروج');
+  };
+
+  // ── SAVE TO FIRESTORE ──
+  window.saveRequest = async function(data) {
+    if (!isLoggedIn) return;
+    await addDoc(collection(db, 'requests'), { ...data, userId: currentUser.uid, userName: currentUser.name, createdAt: serverTimestamp() });
+    gToast('✅ تم نشر طلبك!');
+    loadRequests();
+  };
+
+  window.saveListing = async function(data) {
+    if (!isLoggedIn) return;
+    await addDoc(collection(db, 'listings'), { ...data, userId: currentUser.uid, userName: currentUser.name, createdAt: serverTimestamp() });
+    gToast('✅ تم نشر عقارك!');
+    loadListings();
+  };
+
+  window.saveMessage = async function(toUserId, toName, text, ref) {
+    if (!isLoggedIn) return;
+    const chatId = [currentUser.uid, toUserId].sort().join('_');
+    await addDoc(collection(db, 'messages', chatId, 'msgs'), { from: currentUser.uid, fromName: currentUser.name, to: toUserId, toName, text, ref, createdAt: serverTimestamp() });
+    addNotif('💬', 'var(--golddim)', 'رسالة لـ ' + toName, text.slice(0, 40));
+  };
+
+  // ── LOAD FROM FIRESTORE ──
+  window.loadOffices = async function() {
+    try {
+      const snap = await getDocs(collection(db, 'offices'));
+      if (!snap.empty) {
+        const data = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        // merge with static data for now
+        renderOff();
+      } else {
+        renderOff();
+      }
+    } catch(e) { renderOff(); }
+  };
+
+  window.loadListings = async function() {
+    try {
+      const snap = await getDocs(query(collection(db, 'listings'), orderBy('createdAt', 'desc')));
+      if (!snap.empty) {
+        // show real listings
+        const el = document.getElementById('lst-grid');
+        const hg = document.getElementById('h-listings');
+        const items = snap.docs.map(d => d.data());
+        const html = items.map(l => `
+          <div class="l-card">
+            <div class="l-img" style="background:var(--earth2)">
+              <span style="font-size:44px;opacity:.2">🏠</span>
+              <span class="l-tbadge">${l.type||'عقار'}</span>
+              <span class="l-sbadge">${l.saleType||'للبيع'}</span>
+              <span class="l-ow">👤 ${l.ownerType||'مالك'}</span>
+            </div>
+            <div class="l-body">
+              <div class="l-price">${l.price||''} <small>ريال</small></div>
+              <div class="l-title">${l.title||l.desc||'عقار جديد'}</div>
+              <div class="l-tags"><span class="tag ta">${l.area||''}</span><span class="tag tc">${l.city||''}</span></div>
+              <div class="contact-row">
+                <button class="btn-inner" onclick="chatMsgs=[];openChat('${l.userName||''}','م','var(--earth)','${l.title||''}','','${l.phone||''}')">💬 رسالة</button>
+                <button class="btn-wa" onclick="openWa('966${(l.phone||'').replace(/^0/,'')}','${l.title||''}')">📱 واتساب</button>
+                <button class="btn-tel" onclick="gToast('📞 ${l.phone||''}')">📞</button>
+              </div>
+            </div>
+          </div>`).join('');
+        if (el) el.innerHTML = html || el.innerHTML;
+        if (hg) hg.innerHTML = html.split('</div>').slice(0,3).join('</div>') + '</div>' || hg.innerHTML;
+      }
+    } catch(e) {}
+    renderLst();
+  };
+
+  window.loadRequests = async function() {
+    try {
+      const snap = await getDocs(query(collection(db, 'requests'), orderBy('createdAt', 'desc')));
+      if (!snap.empty) {
+        const el = document.getElementById('req-list');
+        if (el) {
+          el.innerHTML = snap.docs.map(d => {
+            const r = d.data();
+            return `<div class="req-card">
+              <div class="req-ico" style="background:rgba(160,82,45,0.1);font-size:22px">🏠</div>
+              <div class="req-body">
+                <div class="req-title">${r.title||r.type+' في '+r.city}</div>
+                <div class="req-tags">
+                  <span class="tag tc">📍 ${r.city||''}</span>
+                  <span class="tag tp">${r.price||''} ريال</span>
+                  <span class="tag ta">${r.area||''}</span>
+                  <span class="tag td">${r.createdAt?.toDate?.()?.toLocaleDateString('ar-SA')||'حديث'}</span>
+                </div>
+                <div class="req-who">👤 ${r.userName||'مستخدم'}</div>
+                <div class="contact-row" style="margin-top:10px">
+                  <button class="btn-inner" onclick="chatMsgs=[];openChat('${r.userName||''}','م','var(--earth)','${r.title||''}','','${r.phone||''}')">💬 رسالة</button>
+                  <button class="btn-wa" onclick="openWa('966${(r.phone||'').replace(/^0/,'')}','${r.title||''}')">📱 واتساب</button>
+                </div>
+              </div>
+              <div class="req-acts">
+                <button class="btn-offer" onclick="msgFor('${r.title||''}')">رفع عرض</button>
+              </div>
+            </div>`;
+          }).join('') || '<div style="text-align:center;padding:30px;color:var(--text3)">لا توجد طلبات بعد</div>';
+        }
+      }
+    } catch(e) {}
+    renderReq();
+  };
+
+  // expose auth to window for button hooks
+  window._firebaseAuth = auth;
+  window._firebaseDb = db;
+
+</script>
+
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-links">
+    <a href="#">📞 920 001 234</a>
+    <a href="#">❓ مركز المساعدة</a>
+  </div>
+  <div>🛡️ موثق من الهيئة العقارية السعودية &nbsp;•&nbsp; جذورنا في أرض المملكة</div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="logo" onclick="goPage('home')">
+    <div class="logo-mark">
+      <svg viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="20,2 38,12 38,32 20,42 2,32 2,12" fill="#2c1f0e"/>
+        <polygon points="20,2 38,12 38,32 20,42 2,32 2,12" fill="none" stroke="#b8842a" stroke-width="1.5"/>
+        <line x1="20" y1="42" x2="20" y2="14" stroke="#b8842a" stroke-width="2"/>
+        <line x1="2"  y1="12" x2="38" y2="32" stroke="rgba(184,132,42,0.35)" stroke-width="1"/>
+        <line x1="38" y1="12" x2="2"  y2="32" stroke="rgba(184,132,42,0.35)" stroke-width="1"/>
+        <circle cx="20" cy="14" r="3" fill="#b8842a"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <div class="logo-ar">أوتاد</div>
+      <div class="logo-sub">للعقارات</div>
+    </div>
+  </a>
+
+  <div class="nav-links">
+    <button class="nl on" onclick="goPage('home',this)">الرئيسية</button>
+    <button class="nl" onclick="goPage('offices',this)">المكاتب</button>
+    <button class="nl" onclick="goPage('requests',this)">الطلبات</button>
+    <button class="nl" onclick="goPage('listings',this)">العقارات</button>
+    <button class="nl" onclick="goPage('dash',this)">لوحة التحكم</button>
+    <button class="nl admin-nl" id="admin-nav-btn" onclick="goPage('admin',this)" style="display:none">🛡️ الإدارة</button>
+  </div>
+
+  <div class="nav-right">
+    <div class="notif-btn" id="notif-btn" onclick="toggleNotif()" title="الإشعارات">🔔<div class="notif-dot" id="notif-dot"></div></div>
+    <button class="btn-in" id="btn-in" onclick="showM('m-login')">دخول</button>
+    <button class="btn-up" id="btn-up" onclick="showM('m-reg')">تسجيل مجاني</button>
+    <div class="user-chip" id="user-chip" style="display:none" onclick="goPage('profile')">
+      <div class="u-av" id="chip-av">أع</div>
+      <div class="u-name" id="chip-nm">أحمد</div>
+      <button class="u-out" onclick="event.stopPropagation();doLogout()" title="خروج">↩</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div id="pg-home" class="page on">
+
+  <div class="hero">
+    <div class="hero-geo"></div>
+    <div class="hero-lines">
+      <svg viewBox="0 0 1400 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="600" x2="700" y2="0" stroke="rgba(184,132,42,0.07)" stroke-width="1"/>
+        <line x1="200" y1="600" x2="900" y2="0" stroke="rgba(184,132,42,0.05)" stroke-width="1"/>
+        <line x1="400" y1="600" x2="1100" y2="0" stroke="rgba(184,132,42,0.04)" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">منصة أوتاد العقارية — موثوق ومعتمد</div>
+      <h1>جذورنا في <em>الأرض</em><br>قيمنا في السماء</h1>
+      <div class="hero-tagline">أوتاد — للعقارات</div>
+      <p>أكثر من 2,800 مكتب عقاري معتمد، آلاف الطلبات والعروض الحصرية في جميع مناطق المملكة العربية السعودية</p>
+      <div class="hero-btns">
+        <button class="btn-hero-primary" onclick="goPage('offices')">🔍 ابحث عن مكتب</button>
+        <button class="btn-hero-ghost" onclick="goPage('listings')">🏠 تصفح العقارات</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat"><div class="h-n">2,840+</div><div class="h-l">مكتب معتمد</div></div>
+      <div class="h-stat"><div class="h-n">15,000+</div><div class="h-l">عقار معروض</div></div>
+      <div class="h-stat"><div class="h-n">8,500+</div><div class="h-l">صفقة ناجحة</div></div>
+    </div>
+  </div>
+
+  <div class="search-strip">
+    <div class="s-tabs">
+      <button class="s-tab on" onclick="stab(this)">كل العقارات</button>
+      <button class="s-tab" onclick="stab(this)">أراضي</button>
+      <button class="s-tab" onclick="stab(this)">شقق</button>
+      <button class="s-tab" onclick="stab(this)">فلل</button>
+      <button class="s-tab" onclick="stab(this)">تجاري</button>
+      <button class="s-tab" onclick="stab(this)">مكاتب</button>
+    </div>
+    <div class="s-row">
+      <div class="s-field" style="flex:2">
+        <span class="s-field-ico">🔍</span>
+        <input type="text" placeholder="ابحث بالحي أو المدينة أو اسم المكتب...">
+      </div>
+      <div class="s-field">
+        <span class="s-field-ico">📍</span>
+        <select><option>كل المناطق</option><option>الرياض</option><option>جدة</option><option>مكة المكرمة</option><option>الدمام</option><option>المدينة المنورة</option><option>الطائف</option></select>
+      </div>
+      <div class="s-field">
+        <span class="s-field-ico">💰</span>
+        <select><option>كل الأسعار</option><option>أقل من 500,000</option><option>500k – 1M</option><option>1M – 3M</option><option>أكثر من 3M</option></select>
+      </div>
+      <button class="btn-search">🔍 بحث الآن</button>
+    </div>
+  </div>
+
+  <div class="data-strip">
+    <div class="ds-item"><div class="ds-ico">🏢</div><div><div class="ds-n">2<span>,840</span></div><div class="ds-l">مكتب معتمد</div></div></div>
+    <div class="ds-item"><div class="ds-ico">🏠</div><div><div class="ds-n">15<span>k+</span></div><div class="ds-l">عقار معروض</div></div></div>
+    <div class="ds-item"><div class="ds-ico">🤝</div><div><div class="ds-n">8<span>,500</span></div><div class="ds-l">صفقة ناجحة</div></div></div>
+    <div class="ds-item"><div class="ds-ico">📍</div><div><div class="ds-n">15</div><div class="ds-l">منطقة مغطاة</div></div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-kicker">مكاتب مميزة</div>
+      <div class="sec-title">أبرز مكاتب أوتاد</div>
+      <div class="sec-sub">مكاتب موثقة ومصنفة بعناية</div>
+    </div>
+    <div class="off-grid" id="h-offices"></div>
+    <div class="more-wrap"><button class="btn-more" onclick="goPage('offices')">عرض جميع المكاتب ←</button></div>
+  </div>
+
+  <div class="sec sec-alt">
+    <div class="sec-hd">
+      <div class="sec-kicker">أحدث العروض</div>
+      <div class="sec-title">عقارات للبيع والإيجار</div>
+    </div>
+    <div class="lst-grid" id="h-listings"></div>
+    <div class="more-wrap"><button class="btn-more" onclick="goPage('listings')">عرض جميع العقارات ←</button></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-hd" style="text-align:center">
+      <div class="sec-kicker" style="justify-content:center">كيف يعمل أوتاد</div>
+      <div class="sec-title">ثلاث خطوات راسخة</div>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-n" style="background:var(--earth);color:var(--gold3)">١</div>
+        <div class="how-t">ابحث وتصفح</div>
+        <div class="how-p">تصفح آلاف المكاتب والعقارات وفلتر حسب موقعك وميزانيتك واحتياجاتك الدقيقة</div>
+      </div>
+      <div class="how-card">
+        <div class="how-n" style="background:var(--gold);color:var(--earth)">٢</div>
+        <div class="how-t">تواصل مباشرة</div>
+        <div class="how-p">راسل مكتباً واحداً أو أرسل طلبك لعشرات المكاتب دفعة واحدة — كل ذلك مجاناً</div>
+      </div>
+      <div class="how-card">
+        <div class="how-n" style="background:var(--sage);color:#fff">٣</div>
+        <div class="how-t">أتمم صفقتك بأمان</div>
+        <div class="how-p">تواصل مع الملاك والوسطاء الموثقين وأتمم صفقتك بضمان منصة أوتاد</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo-ar">أوتاد</span>
+        <span class="footer-logo-sub">للعقارات</span>
+        <p>المنصة العقارية الموثوقة في المملكة العربية السعودية. جذورنا في الأرض وقيمنا في خدمتك.</p>
+        <div class="soc-row" style="margin-top:16px">
+          <a class="soc" href="#">𝕏</a>
+          <a class="soc" href="#">📸</a>
+          <a class="soc" href="#">👻</a>
+          <a class="soc" href="#">💬</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>المنصة</h5><a href="#">المكاتب</a><a href="#">العقارات</a><a href="#">الطلبات</a><a href="#">الوسطاء</a></div>
+      <div class="footer-col"><h5>للمكاتب</h5><a href="#">سجل مكتبك</a><a href="#">الباقات</a><a href="#">لوحة التحكم</a><a href="#">الدعم</a></div>
+      <div class="footer-col"><h5>أوتاد</h5><a href="#">عن المنصة</a><a href="#">الشروط</a><a href="#">الخصوصية</a><a href="#">تواصل معنا</a></div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2025 أوتاد للعقارات — جميع الحقوق محفوظة</span>
+      <span style="color:var(--gold)">🛡️ موثق من الهيئة العقارية السعودية</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════ OFFICES ═══════════ -->
+<div id="pg-offices" class="page">
+  <div class="sec">
+    <div class="sec-hd"><div class="sec-kicker">دليل المكاتب</div><div class="sec-title">المكاتب العقارية</div><div class="sec-sub">2,840 مكتب في جميع مناطق المملكة</div></div>
+    <div class="tb">
+      <div class="tb-inp" style="flex:2"><span style="color:var(--text3);font-size:14px">🔍</span><input type="text" id="o-q" placeholder="ابحث باسم المكتب أو المدينة..." oninput="renderOff()"></div>
+      <select class="tb-sel" id="o-c" onchange="renderOff()"><option value="">كل المناطق</option><option>الرياض</option><option>جدة</option><option>مكة</option><option>الدمام</option><option>المدينة</option></select>
+      <select class="tb-sel" id="o-s" onchange="renderOff()"><option value="">كل التخصصات</option><option>أراضي</option><option>شقق</option><option>فلل</option><option>تجاري</option></select>
+      <select class="tb-sel" id="o-v" onchange="renderOff()"><option value="">الكل</option><option value="fal">موثق فال</option><option value="prem">بريميوم</option></select>
+    </div>
+    <div class="bulk" id="bulk-bar">
+      <div class="bulk-info"><div class="bulk-dot"></div><span id="bulk-txt">تم تحديد 0 مكاتب</span></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn-clr" onclick="clearSel()">إلغاء التحديد</button>
+        <button class="btn-bulk" onclick="showM('m-bulk')">📨 إرسال رسالة للمحددين</button>
+      </div>
+    </div>
+    <div class="off-grid" id="off-grid"></div>
+  </div>
+</div>
+
+<!-- ═══════════ REQUESTS ═══════════ -->
+<div id="pg-requests" class="page">
+  <div class="sec">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+      <div class="sec-hd" style="margin-bottom:0"><div class="sec-kicker">سوق الطلبات</div><div class="sec-title">طلبات العملاء والوسطاء</div><div class="sec-sub">184 طلب نشط الآن</div></div>
+      <button onclick="showM('m-addreq')" style="padding:12px 22px;background:var(--earth);color:var(--sand);border:none;border-radius:var(--r);font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;transition:all .2s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--earth)'" onmouseout="this.style.background='var(--earth)';this.style.color='var(--sand)'">+ إضافة طلب</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center"><div style="font-family:'Amiri',serif;font-size:28px;font-weight:700;color:var(--earth)">184</div><div style="font-size:11px;color:var(--text3)">طلب نشط</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center"><div style="font-family:'Amiri',serif;font-size:28px;font-weight:700;color:var(--terracotta)">67</div><div style="font-size:11px;color:var(--text3)">أراضي</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center"><div style="font-family:'Amiri',serif;font-size:28px;font-weight:700;color:var(--earth2)">58</div><div style="font-size:11px;color:var(--text3)">شقق</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center"><div style="font-family:'Amiri',serif;font-size:28px;font-weight:700;color:var(--sage)">59</div><div style="font-size:11px;color:var(--text3)">فلل وتجاري</div></div>
+    </div>
+    <div class="rtabs" id="rtabs">
+      <button class="rtab on" onclick="fReq('all',this)">الكل (184)</button>
+      <button class="rtab" onclick="fReq('land',this)">أراضي (67)</button>
+      <button class="rtab" onclick="fReq('apt',this)">شقق (58)</button>
+      <button class="rtab" onclick="fReq('villa',this)">فلل (41)</button>
+      <button class="rtab" onclick="fReq('com',this)">تجاري (18)</button>
+    </div>
+    <div class="req-list" id="req-list"></div>
+  </div>
+</div>
+
+<!-- ═══════════ LISTINGS ═══════════ -->
+<div id="pg-listings" class="page">
+  <div class="sec">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+      <div class="sec-hd" style="margin-bottom:0"><div class="sec-kicker">سوق العقارات</div><div class="sec-title">عروض الملاك والوسطاء</div><div class="sec-sub">3,420 عقار معروض</div></div>
+      <button onclick="showM('m-addlst')" style="padding:12px 22px;background:var(--earth);color:var(--sand);border:none;border-radius:var(--r);font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;transition:all .2s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--earth)'" onmouseout="this.style.background='var(--earth)';this.style.color='var(--sand)'">+ إضافة عقار</button>
+    </div>
+    <div class="tb">
+      <div class="tb-inp" style="flex:2"><span style="color:var(--text3);font-size:14px">🔍</span><input type="text" placeholder="ابحث في العقارات..."></div>
+      <select class="tb-sel"><option>كل الأنواع</option><option>أراضي</option><option>شقق</option><option>فلل</option><option>تجاري</option></select>
+      <select class="tb-sel"><option>كل المدن</option><option>الرياض</option><option>جدة</option><option>الدمام</option></select>
+      <select class="tb-sel"><option>كل الأسعار</option><option>أقل من 500k</option><option>500k–1M</option><option>1M–3M</option><option>+3M</option></select>
+      <select class="tb-sel"><option>بيع وإيجار</option><option>للبيع</option><option>للإيجار</option></select>
+    </div>
+    <div class="map-ph" onclick="gToast('🗺️ الخريطة التفاعلية قريباً!')">
+      <div class="map-ph-ico">🗺️</div>
+      <span>خريطة أوتاد التفاعلية — انقر للبحث الجغرافي</span>
+    </div>
+    <div class="lst-grid" id="lst-grid"></div>
+  </div>
+</div>
+
+<!-- ═══════════ DASHBOARD ═══════════ -->
+<div id="pg-dash" class="page">
+  <div class="sec">
+    <div class="sec-hd"><div class="sec-kicker">لوحة التحكم</div><div class="sec-title" id="dash-greeting">مرحباً</div><div class="sec-sub">آخر تحديث: اليوم 10:30 ص</div></div>
+    <div class="dash-stats">
+      <div class="dstat"><div class="dstat-ico">✉️</div><div class="dstat-n">18</div><div class="dstat-l">رسالة واردة</div><div class="dstat-chg up">↑ 5 غير مقروءة</div></div>
+      <div class="dstat"><div class="dstat-ico">📋</div><div class="dstat-n">7</div><div class="dstat-l">طلبات نشطة</div><div class="dstat-chg up">↑ 3 ردود جديدة</div></div>
+      <div class="dstat"><div class="dstat-ico">🏠</div><div class="dstat-n">4</div><div class="dstat-l">عقارات معروضة</div><div class="dstat-chg" style="color:var(--gold)">👁 142 مشاهدة</div></div>
+      <div class="dstat"><div class="dstat-ico">🤝</div><div class="dstat-n">3</div><div class="dstat-l">قيد التفاوض</div><div class="dstat-chg dn">⚡ تحتاج متابعة</div></div>
+    </div>
+    <div class="dash-grid">
+      <div class="d-card">
+        <div class="d-title">النشاط الأخير <span style="font-size:10px;color:var(--text3);font-weight:400">آخر 24 ساعة</span></div>
+        <div class="act-row"><div class="a-dot" style="background:var(--sage)"></div><div class="a-txt">مكتب الراشد رد على طلب الأرض</div><div class="a-time">20د</div></div>
+        <div class="act-row"><div class="a-dot" style="background:var(--earth2)"></div><div class="a-txt">عرض جديد على طلب الشقة</div><div class="a-time">1س</div></div>
+        <div class="act-row"><div class="a-dot" style="background:var(--gold)"></div><div class="a-txt">تقييم 5 نجوم من عميل</div><div class="a-time">3س</div></div>
+        <div class="act-row"><div class="a-dot" style="background:var(--terracotta)"></div><div class="a-txt">فيلا جديدة في النرجس نُشرت</div><div class="a-time">5س</div></div>
+        <div class="act-row"><div class="a-dot" style="background:var(--text3)"></div><div class="a-txt">انتهاء صلاحية إعلان الشقة</div><div class="a-time">أمس</div></div>
+      </div>
+      <div class="d-card">
+        <div class="d-title">توزيع الطلبات</div>
+        <div class="prog-row"><div class="prog-lbl"><span>أراضي سكنية</span><span>36%</span></div><div class="prog-track"><div class="prog-fill" style="width:36%;background:var(--terracotta)"></div></div></div>
+        <div class="prog-row"><div class="prog-lbl"><span>شقق سكنية</span><span>31%</span></div><div class="prog-track"><div class="prog-fill" style="width:31%;background:var(--earth2)"></div></div></div>
+        <div class="prog-row"><div class="prog-lbl"><span>فلل وقصور</span><span>22%</span></div><div class="prog-track"><div class="prog-fill" style="width:22%;background:var(--sage)"></div></div></div>
+        <div class="prog-row"><div class="prog-lbl"><span>تجاري وإداري</span><span>11%</span></div><div class="prog-track"><div class="prog-fill" style="width:11%;background:var(--gold)"></div></div></div>
+      </div>
+      <div class="d-card">
+        <div class="d-title">الإشعارات <span style="background:rgba(160,82,45,0.12);color:var(--terracotta);font-size:10px;padding:2px 8px;border-radius:10px">5 جديد</span></div>
+        <div class="notif-row unr"><div class="n-dot" style="background:var(--gold)"></div><div class="n-body"><div class="n-txt" style="font-weight:700">مكتب الراشد أرسل عرضاً جديداً</div><div class="n-time">منذ 15 دقيقة</div></div></div>
+        <div class="notif-row unr"><div class="n-dot" style="background:var(--sage)"></div><div class="n-body"><div class="n-txt" style="font-weight:700">عميل جديد مهتم بعقارك</div><div class="n-time">منذ 45 دقيقة</div></div></div>
+        <div class="notif-row"><div class="n-dot" style="background:var(--gold)"></div><div class="n-body"><div class="n-txt">انتهاء إعلانك خلال 3 أيام</div><div class="n-time">منذ ساعتين</div></div></div>
+        <div class="notif-row"><div class="n-dot" style="background:var(--text3)"></div><div class="n-body"><div class="n-txt">تم تجديد اشتراكك</div><div class="n-time">البارحة</div></div></div>
+      </div>
+      <div class="d-card">
+        <div class="d-title">أكثر المدن طلباً</div>
+        <div class="prog-row"><div class="prog-lbl"><span>الرياض</span><span>48%</span></div><div class="prog-track"><div class="prog-fill" style="width:48%;background:var(--earth)"></div></div></div>
+        <div class="prog-row"><div class="prog-lbl"><span>جدة</span><span>27%</span></div><div class="prog-track"><div class="prog-fill" style="width:27%;background:var(--earth2)"></div></div></div>
+        <div class="prog-row"><div class="prog-lbl"><span>الدمام</span><span>14%</span></div><div class="prog-track"><div class="prog-fill" style="width:14%;background:var(--terracotta)"></div></div></div>
+        <div class="prog-row"><div class="prog-lbl"><span>مدن أخرى</span><span>11%</span></div><div class="prog-track"><div class="prog-fill" style="width:11%;background:var(--text3)"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PROFILE ═══════════ -->
+<div id="pg-profile" class="page">
+  <div class="sec">
+    <div class="prof-wrap">
+      <div class="p-side">
+        <div class="p-av-wrap">
+          <div class="p-av" id="prof-av">أع</div>
+          <div class="p-nm" id="prof-nm">أحمد العتيبي</div>
+          <div class="p-role" id="prof-role">👤 عضو مسجل • المملكة</div>
+          <div class="p-stars">★★★★☆</div>
+          <div style="font-size:11px;color:var(--text3)">4.2 من 5 (38 تقييم)</div>
+        </div>
+        <div class="p-menu">
+          <button class="pm on" onclick="showPT('info',this)"><em>👤</em> بياناتي</button>
+          <button class="pm" onclick="showPT('reqs',this)"><em>📋</em> طلباتي (7)</button>
+          <button class="pm" onclick="showPT('lsts',this)"><em>🏠</em> عقاراتي (4)</button>
+          <button class="pm" onclick="showPT('msgs',this)"><em>✉️</em> الرسائل <span style="background:rgba(160,82,45,0.12);color:var(--terracotta);font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">5</span></button>
+          <button class="pm" onclick="showPT('saved',this)"><em>❤️</em> المحفوظات</button>
+          <button class="pm" onclick="showPT('sub',this)"><em>👑</em> اشتراكي</button>
+          <button class="pm" onclick="showPT('sec',this)"><em>🔒</em> الأمان</button>
+        </div>
+      </div>
+      <div class="p-cont">
+        <div id="pt-info" class="pt on">
+          <div class="pt-title">البيانات الشخصية</div>
+          <div class="fr2"><div><label class="fl">الاسم الكامل</label><input class="fi" value="أحمد محمد العتيبي"></div><div><label class="fl">رقم الجوال</label><input class="fi" value="0501234567"></div></div>
+          <div class="fr2"><div><label class="fl">البريد الإلكتروني</label><input class="fi" value="ahmed@awtad.sa"></div><div><label class="fl">المدينة</label><select class="fi"><option>الرياض</option><option>جدة</option></select></div></div>
+          <div class="fr"><label class="fl">رقم ترخيص فال</label><div style="display:flex;gap:8px"><input class="fi" value="FAL-1234567890" style="flex:1"><span style="background:rgba(92,122,78,0.12);color:var(--sage);padding:10px 14px;border-radius:var(--r2);font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px;white-space:nowrap;border:1px solid rgba(92,122,78,0.2)">✅ موثق</span><button onclick="showM('m-fal')" style="padding:10px 12px;background:var(--golddim);color:var(--gold);border:1px solid rgba(184,132,42,0.25);border-radius:var(--r2);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap">🔍 تحقق جديد</button></div></div>
+          <div class="fr"><label class="fl">نبذة مهنية</label><textarea class="fi" rows="3">وسيط متخصص في أراضي شمال الرياض، خبرة 8 سنوات</textarea></div>
+          <!-- investor fields shown only for investors -->
+          <div id="invest-profile-sec" style="display:none">
+            <div style="height:1px;background:var(--border);margin:14px 0"></div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+              <span style="font-size:18px">💰</span>
+              <span style="font-size:14px;font-weight:700;color:var(--earth);font-family:'Amiri',serif">بيانات المستثمر</span>
+              <span style="background:var(--golddim);color:var(--gold);border:1px solid rgba(184,132,42,0.3);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px">مستثمر عقاري</span>
+            </div>
+            <div class="fr2">
+              <div>
+                <label class="fl">نوع الاستثمار المفضل</label>
+                <select class="fi" id="prof-invest-type">
+                  <option>أراضي سكنية وتجارية</option>
+                  <option>شقق للإيجار</option>
+                  <option>مجمعات سكنية</option>
+                  <option>عقارات تجارية</option>
+                  <option>تطوير عقاري</option>
+                  <option>متنوع</option>
+                </select>
+              </div>
+              <div>
+                <label class="fl">الميزانية الاستثمارية</label>
+                <select class="fi" id="prof-budget">
+                  <option>أقل من 500,000 ريال</option>
+                  <option>500,000 – 2,000,000 ريال</option>
+                  <option>2,000,000 – 10,000,000 ريال</option>
+                  <option>أكثر من 10,000,000 ريال</option>
+                </select>
+              </div>
+            </div>
+            <div class="fr">
+              <label class="fl">أهداف الاستثمار</label>
+              <textarea class="fi" rows="2" placeholder="مثال: أبحث عن أراضٍ في شمال الرياض للتطوير على المدى المتوسط..."></textarea>
+            </div>
+            <div class="fr">
+              <label class="fl">المناطق المستهدفة</label>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <label style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text2);cursor:pointer"><input type="checkbox" checked style="accent-color:var(--gold)"> الرياض</label>
+                <label style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text2);cursor:pointer"><input type="checkbox" style="accent-color:var(--gold)"> جدة</label>
+                <label style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text2);cursor:pointer"><input type="checkbox" style="accent-color:var(--gold)"> الدمام</label>
+                <label style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text2);cursor:pointer"><input type="checkbox" style="accent-color:var(--gold)"> مكة</label>
+                <label style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text2);cursor:pointer"><input type="checkbox" style="accent-color:var(--gold)"> المدينة</label>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:10px"><button class="btn-cancel">إلغاء</button><button class="btn-submit" onclick="doToast('t-prof')">✓ حفظ التغييرات</button></div>
+          <div id="t-prof" class="toast2">✅ تم حفظ البيانات بنجاح</div>
+        </div>
+        <div id="pt-reqs" class="pt"><div class="pt-title">طلباتي المنشورة</div><div style="text-align:center;padding:40px;color:var(--text3)"><div style="font-size:40px;margin-bottom:12px">📋</div>لا توجد طلبات بعد<br><button onclick="showM('m-addreq')" style="margin-top:14px;padding:10px 20px;background:var(--earth);color:var(--sand);border:none;border-radius:var(--r2);font-family:inherit;font-size:13px;font-weight:800;cursor:pointer">+ إضافة طلب</button></div></div>
+        <div id="pt-lsts" class="pt"><div class="pt-title">عقاراتي المعروضة</div><div style="text-align:center;padding:40px;color:var(--text3)"><div style="font-size:40px;margin-bottom:12px">🏠</div>لم تنشر أي عقار بعد<br><button onclick="showM('m-addlst')" style="margin-top:14px;padding:10px 20px;background:var(--earth);color:var(--sand);border:none;border-radius:var(--r2);font-family:inherit;font-size:13px;font-weight:800;cursor:pointer">+ إضافة عقار</button></div></div>
+        <div id="pt-msgs" class="pt">
+          <div class="pt-title">صندوق الرسائل</div>
+          <div class="notif-row unr"><div class="n-dot" style="background:var(--gold)"></div><div class="n-body"><div class="n-txt" style="font-weight:700">مكتب الراشد العقاري</div><div class="n-txt" style="color:var(--text3);font-size:12px">لدينا أرض مناسبة لطلبك في الملقا...</div><div class="n-time">منذ 20 دقيقة</div></div><button class="btn-offer" style="flex-shrink:0">رد</button></div>
+          <div class="notif-row"><div class="n-dot" style="background:var(--sage)"></div><div class="n-body"><div class="n-txt" style="font-weight:700">النخيل للعقارات</div><div class="n-txt" style="color:var(--text3);font-size:12px">هل تقبل بموقع بديل في حي...</div><div class="n-time">البارحة</div></div><button class="btn-offer" style="flex-shrink:0">رد</button></div>
+        </div>
+        <div id="pt-saved" class="pt"><div class="pt-title">المحفوظات</div><div style="text-align:center;padding:40px;color:var(--text3)"><div style="font-size:40px;margin-bottom:12px">❤️</div>لم تحفظ أي عقار بعد</div></div>
+        <div id="pt-sub" class="pt">
+          <div class="pt-title">باقة الاشتراك</div>
+          <div style="background:var(--golddim2);border:1.5px solid rgba(184,132,42,0.25);border-radius:var(--r);padding:24px;text-align:center">
+            <div style="font-size:48px;margin-bottom:12px">🎁</div>
+            <div style="font-family:'Amiri',serif;font-size:22px;font-weight:700;color:var(--earth);margin-bottom:8px">حسابك مجاني بالكامل</div>
+            <div style="font-size:13px;color:var(--text3);margin-bottom:20px;line-height:1.7">جميع خدمات أوتاد متاحة لك بدون أي رسوم أو اشتراك مدفوع</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:right;max-width:320px;margin:0 auto 20px">
+              <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-size:14px">✓</span> تصفح جميع المكاتب</div>
+              <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-size:14px">✓</span> رسائل داخلية</div>
+              <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-size:14px">✓</span> تواصل عبر واتساب</div>
+              <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-size:14px">✓</span> نشر الطلبات والعروض</div>
+              <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-size:14px">✓</span> إرسال جماعي للمكاتب</div>
+              <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-size:14px">✓</span> لوحة تحكم كاملة</div>
+            </div>
+            <div style="background:var(--earth);color:var(--gold3);border-radius:var(--r2);padding:10px 20px;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700">
+              ✅ حسابك نشط — كل الخدمات مفعّلة
+            </div>
+          </div>
+        </div>
+        <div id="pt-sec" class="pt">
+          <div class="pt-title">إعدادات الأمان</div>
+          <div class="fr"><label class="fl">كلمة المرور الحالية</label><input class="fi" type="password" placeholder="••••••••"></div>
+          <div class="fr2"><div><label class="fl">كلمة المرور الجديدة</label><input class="fi" type="password" placeholder="••••••••"></div><div><label class="fl">التأكيد</label><input class="fi" type="password" placeholder="••••••••"></div></div>
+          <div style="display:flex;justify-content:flex-end"><button class="btn-submit" onclick="doToast('t-sec')">🔒 تغيير كلمة المرور</button></div>
+          <div id="t-sec" class="toast2">✅ تم تغيير كلمة المرور</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ MODALS ═══════════ -->
+<div id="m-msg" class="moverlay">
+  <div class="mbox">
+    <div class="mbox-top"><div class="mtitle" id="m-msg-title">إرسال طلب عقاري</div><button class="mx" onclick="hideM('m-msg')">✕</button></div>
+    <div class="fr"><label class="fl">نوع العقار</label><select class="fi"><option>أرض سكنية</option><option>شقة</option><option>فيلا</option><option>دور</option><option>تجاري</option></select></div>
+    <div class="fr2"><div><label class="fl">المدينة</label><select class="fi"><option>الرياض</option><option>جدة</option><option>مكة</option><option>الدمام</option></select></div><div><label class="fl">الميزانية (ريال)</label><input class="fi" placeholder="800,000"></div></div>
+    <div class="fr2"><div><label class="fl">المساحة</label><input class="fi" placeholder="400 م²"></div><div><label class="fl">رقم التواصل</label><input class="fi" placeholder="05xxxxxxxx"></div></div>
+    <div class="fr"><label class="fl">تفاصيل إضافية</label><textarea class="fi" rows="3" placeholder="الحي، عدد الغرف، المميزات..."></textarea></div>
+    <div class="m-acts"><button class="btn-cancel" onclick="hideM('m-msg')">إلغاء</button><button class="btn-submit" onclick="doToast('t-msg')">📨 إرسال الطلب</button></div>
+    <div id="t-msg" class="toast2">✅ تم الإرسال! سيتواصل معك المكتب خلال 24 ساعة</div>
+  </div>
+</div>
+
+<div id="m-bulk" class="moverlay">
+  <div class="mbox">
+    <div class="mbox-top"><div class="mtitle">إرسال رسالة جماعية</div><button class="mx" onclick="hideM('m-bulk')">✕</button></div>
+    <div class="fr"><label class="fl">نوع العقار</label><select class="fi"><option>أرض سكنية</option><option>شقة</option><option>فيلا</option><option>تجاري</option></select></div>
+    <div class="fr2"><div><label class="fl">المدينة</label><select class="fi"><option>الرياض</option><option>جدة</option><option>مكة</option></select></div><div><label class="fl">الميزانية</label><input class="fi" placeholder="1,000,000"></div></div>
+    <div class="fr"><label class="fl">رسالتك</label><textarea class="fi" rows="4" placeholder="اكتب تفاصيل طلبك..."></textarea></div>
+    <div class="fr"><label class="fl">رقم التواصل</label><input class="fi" placeholder="05xxxxxxxx"></div>
+    <div class="m-acts"><button class="btn-cancel" onclick="hideM('m-bulk')">إلغاء</button><button class="btn-submit" onclick="doToast('t-bulk')">📨 إرسال للجميع</button></div>
+    <div id="t-bulk" class="toast2">✅ تم الإرسال الجماعي بنجاح!</div>
+  </div>
+</div>
+
+<div id="m-addreq" class="moverlay">
+  <div class="mbox">
+    <div class="mbox-top"><div class="mtitle">إضافة طلب جديد</div><button class="mx" onclick="hideM('m-addreq')">✕</button></div>
+    <div class="fr2"><div><label class="fl">نوع العقار</label><select class="fi"><option>أرض</option><option>شقة</option><option>فيلا</option><option>تجاري</option></select></div><div><label class="fl">الغرض</label><select class="fi"><option>شراء</option><option>إيجار</option></select></div></div>
+    <div class="fr2"><div><label class="fl">المدينة</label><select class="fi"><option>الرياض</option><option>جدة</option><option>مكة</option></select></div><div><label class="fl">الحي</label><input class="fi" placeholder="حي النرجس"></div></div>
+    <div class="fr2"><div><label class="fl">الميزانية</label><input class="fi" placeholder="1,200,000"></div><div><label class="fl">المساحة</label><input class="fi" placeholder="400–600 م²"></div></div>
+    <div class="fr"><label class="fl">تفاصيل</label><textarea class="fi" rows="2" placeholder="عدد الغرف، مميزات..."></textarea></div>
+    <div class="fr"><label class="fl">رقم التواصل</label><input class="fi" placeholder="05xxxxxxxx"></div>
+    <div class="m-acts"><button class="btn-cancel" onclick="hideM('m-addreq')">إلغاء</button><button class="btn-submit" onclick="doToast('t-addreq')">+ نشر الطلب</button></div>
+    <div id="t-addreq" class="toast2">✅ تم نشر طلبك! ستتلقى ردوداً قريباً</div>
+  </div>
+</div>
+
+<div id="m-addlst" class="moverlay">
+  <div class="mbox">
+    <div class="mbox-top"><div class="mtitle">إضافة عقار للعرض</div><button class="mx" onclick="hideM('m-addlst')">✕</button></div>
+    <div class="fr2"><div><label class="fl">نوع العقار</label><select class="fi"><option>أرض</option><option>شقة</option><option>فيلا</option><option>دور</option><option>تجاري</option></select></div><div><label class="fl">نوع العرض</label><select class="fi"><option>للبيع</option><option>للإيجار</option></select></div></div>
+    <div class="fr2"><div><label class="fl">المدينة</label><select class="fi"><option>الرياض</option><option>جدة</option><option>الدمام</option></select></div><div><label class="fl">الحي</label><input class="fi" placeholder="اسم الحي"></div></div>
+    <div class="fr2"><div><label class="fl">السعر (ريال)</label><input class="fi" placeholder="850,000"></div><div><label class="fl">المساحة (م²)</label><input class="fi" placeholder="500"></div></div>
+    <div class="fr"><label class="fl">وصف العقار</label><textarea class="fi" rows="2" placeholder="وصف تفصيلي..."></textarea></div>
+    <div class="fr2"><div><label class="fl">أنت</label><select class="fi"><option>مالك مباشر</option><option>وسيط</option><option>شركة تطوير</option></select></div><div><label class="fl">رقم التواصل</label><input class="fi" placeholder="05xxxxxxxx"></div></div>
+    <div class="m-acts"><button class="btn-cancel" onclick="hideM('m-addlst')">إلغاء</button><button class="btn-submit" onclick="doToast('t-addlst')">⬆ نشر العقار</button></div>
+    <div id="t-addlst" class="toast2">✅ تم نشر عقارك بنجاح!</div>
+  </div>
+</div>
+
+<div id="m-login" class="moverlay">
+  <div class="mbox" style="max-width:420px">
+    <div class="mbox-top"><div class="mtitle">تسجيل الدخول</div><button class="mx" onclick="hideM('m-login')">✕</button></div>
+    <div style="text-align:center;margin-bottom:18px;font-size:11px;color:var(--text3)">أهلاً بك في أوتاد — سجّل دخولك للمتابعة</div>
+    <div class="fr"><label class="fl">رقم الجوال أو البريد</label><input class="fi" id="l-phone" placeholder="05xxxxxxxx"></div>
+    <div class="fr"><label class="fl">كلمة المرور</label><input class="fi" id="l-pass" type="password" placeholder="••••••••"></div>
+    <div id="l-err" class="f-err"></div>
+    <div style="text-align:left;margin-bottom:14px"><a href="#" style="font-size:12px;color:var(--gold);text-decoration:none">نسيت كلمة المرور؟</a></div>
+    <button class="btn-submit" style="width:100%;justify-content:center;padding:13px" onclick="doLogin()">دخول بالإيميل ←</button>
+    <button onclick="doGoogleLogin()" style="width:100%;padding:13px;background:#fff;border:1.5px solid var(--border2);border-radius:var(--r2);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--earth);transition:all .2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border2)'">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-3.59-13.46-8.83l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      تسجيل الدخول بجوجل
+    </button>
+    <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--text3)">ليس لديك حساب؟ <a href="#" onclick="hideM('m-login');showM('m-reg')" style="color:var(--gold);font-weight:700;text-decoration:none">إنشاء حساب مجاني</a></div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);text-align:center">
+      <button onclick="document.getElementById('l-phone').value='demo@awtad.sa';document.getElementById('l-pass').value='demo123';doLogin()" style="width:100%;padding:10px;background:var(--sand2);border:1px solid var(--border);border-radius:var(--r2);color:var(--text2);font-family:inherit;font-size:13px;cursor:pointer;font-weight:600">🚀 حساب تجريبي — دخول فوري</button>
+    </div>
+  </div>
+</div>
+
+<div id="m-reg" class="moverlay">
+  <div class="mbox" style="max-width:480px">
+    <div class="mbox-top"><div class="mtitle">سجّل مجاناً — لا رسوم</div><button class="mx" onclick="hideM('m-reg')">✕</button></div>
+    <div class="fr">
+      <label class="fl">نوع الحساب</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <label class="acct-type-btn on" onclick="selAcct(this)">🏢 وسيط عقاري</label>
+        <label class="acct-type-btn" onclick="selAcct(this)">🏠 مالك عقار</label>
+        <label class="acct-type-btn" onclick="selAcct(this)">🔍 باحث عن عقار</label>
+        <label class="acct-type-btn" onclick="selAcct(this)">💰 مستثمر عقاري</label>
+      </div>
+    </div>
+    <div class="fr2"><div><label class="fl">الاسم الكامل *</label><input class="fi" id="r-name" placeholder="محمد أحمد"></div><div><label class="fl">رقم الجوال *</label><input class="fi" id="r-phone" placeholder="05xxxxxxxx"></div></div>
+    <div class="fr"><label class="fl">البريد الإلكتروني *</label><input class="fi" id="r-email" placeholder="you@email.com"></div>
+    <div class="fr2"><div><label class="fl">كلمة المرور *</label><input class="fi" id="r-pw" type="password" placeholder="••••••••"></div><div><label class="fl">التأكيد</label><input class="fi" type="password" placeholder="••••••••"></div></div>
+    <div class="fr" id="fal-row">
+      <label class="fl">رقم فال (للوسطاء)</label>
+      <div style="display:flex;gap:8px">
+        <input class="fi" id="r-fal" placeholder="اختياري — مثال: FAL-1234567890" style="flex:1">
+        <button type="button" onclick="quickCheckFal()" style="padding:10px 14px;background:var(--earth);color:var(--sand);border:none;border-radius:var(--r2);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap">تحقق</button>
+      </div>
+      <div id="reg-fal-status" style="display:none;margin-top:6px;font-size:11px;font-weight:600;padding:6px 10px;border-radius:var(--r2)"></div>
+    </div>
+    <div class="fr" id="invest-row" style="display:none">
+      <label class="fl">نوع الاستثمار المفضل</label>
+      <select class="fi" id="r-invest-type">
+        <option>أراضي سكنية وتجارية</option>
+        <option>شقق للإيجار</option>
+        <option>مجمعات سكنية</option>
+        <option>عقارات تجارية</option>
+        <option>تطوير عقاري</option>
+        <option>متنوع</option>
+      </select>
+    </div>
+    <div class="fr" id="budget-row" style="display:none">
+      <label class="fl">الميزانية الاستثمارية التقريبية (ريال)</label>
+      <select class="fi" id="r-budget">
+        <option>أقل من 500,000</option>
+        <option>500,000 – 2,000,000</option>
+        <option>2,000,000 – 10,000,000</option>
+        <option>أكثر من 10,000,000</option>
+      </select>
+    </div>
+    <div id="r-err" class="f-err"></div>
+    <button class="btn-submit" style="width:100%;justify-content:center;padding:13px" onclick="doRegister()">إنشاء الحساب ←</button>
+    <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text3)">لديك حساب؟ <a href="#" onclick="hideM('m-reg');showM('m-login')" style="color:var(--gold);font-weight:700;text-decoration:none">تسجيل الدخول</a></div>
+  </div>
+</div>
+
+<!-- AUTH WALL / SUBSCRIPTION GATE -->
+<div class="auth-wall" id="auth-wall">
+  <div class="auth-box" style="max-width:520px">
+    <span class="auth-icon" id="wall-icon">🏠</span>
+    <div class="auth-title" id="wall-title">سجّل حسابك المجاني</div>
+    <div class="auth-sub" style="margin-bottom:4px">للوصول إلى <span class="auth-page" id="wall-page">هذه الصفحة</span></div>
+    <div class="auth-desc" id="wall-desc">سجّل حساباً مجانياً خلال ثوانٍ واستمتع بجميع الخدمات بلا أي رسوم أو اشتراك مدفوع</div>
+
+    <div id="wall-plans" style="background:var(--golddim2);border:1px solid rgba(184,132,42,0.2);border-radius:var(--r);padding:18px 20px;margin:18px 0;text-align:right">
+      <div style="font-size:13px;font-weight:700;color:var(--earth);margin-bottom:10px;font-family:'Amiri',serif">✨ التسجيل مجاني بالكامل — بلا أي رسوم</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-weight:700">✓</span> تصفح جميع المكاتب</div>
+        <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-weight:700">✓</span> عرض الطلبات والعروض</div>
+        <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-weight:700">✓</span> التواصل برسائل داخلية</div>
+        <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-weight:700">✓</span> التواصل عبر واتساب</div>
+        <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-weight:700">✓</span> نشر طلباتك العقارية</div>
+        <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-weight:700">✓</span> إضافة عقاراتك للعرض</div>
+        <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-weight:700">✓</span> الإرسال الجماعي للمكاتب</div>
+        <div style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px"><span style="color:var(--sage);font-weight:700">✓</span> لوحة تحكم كاملة</div>
+      </div>
+    </div>
+
+    <div class="auth-btns" style="margin-top:8px">
+      <button class="btn-aw-reg" onclick="hideWall();showM('m-reg')" style="font-size:15px;padding:14px 36px">✨ إنشاء حساب مجاني — مجاناً</button>
+      <button class="btn-aw-login" onclick="hideWall();showM('m-login')">🔑 دخول</button>
+    </div>
+    <div class="auth-demo" style="margin-top:12px">أو جرّب <a href="#" onclick="hideWall();document.getElementById('l-phone').value='demo@awtad.sa';document.getElementById('l-pass').value='demo123';showM('m-login')">الحساب التجريبي</a> للدخول الفوري</div>
+  </div>
+</div>
+
+
+<!-- ═══ NOTIFICATION PANEL ═══ -->
+<div class="notif-panel" id="notif-panel">
+  <div class="np-head">
+    <span class="np-title">🔔 الإشعارات</span>
+    <button class="np-mark" onclick="markAllRead()">قراءة الكل</button>
+  </div>
+  <div class="np-list" id="np-list"></div>
+  <div class="np-footer"><button onclick="goPage('profile');setTimeout(()=>{const b=document.querySelector('.pm:nth-child(4)');if(b)showPT('msgs',b);},200);closeNotif()">عرض جميع الرسائل ←</button></div>
+</div>
+
+<!-- ═══ ADMIN PAGE ═══ -->
+<div id="pg-admin" class="page">
+  <div id="admin-login" class="admin-login-screen">
+    <div class="admin-login-box">
+      <div style="font-size:48px;margin-bottom:12px">🛡️</div>
+      <div style="font-family:'Amiri',serif;font-size:22px;font-weight:700;color:var(--earth);margin-bottom:6px">لوحة إدارة أوتاد</div>
+      <div style="font-size:13px;color:var(--text3);margin-bottom:24px">هذه المنطقة مخصصة لمدير النظام فقط</div>
+      <div class="fr" style="text-align:right"><label class="fl">اسم المستخدم</label><input class="fi" id="adm-user" placeholder="admin" value="admin"></div>
+      <div class="fr" style="text-align:right"><label class="fl">كلمة المرور</label><input class="fi" id="adm-pass" type="password" placeholder="••••••••" value="admin123"></div>
+      <div id="adm-err" style="display:none;background:rgba(160,82,45,0.1);color:var(--terracotta);padding:8px 12px;border-radius:var(--r2);font-size:12px;margin-bottom:10px"></div>
+      <button onclick="adminLogin()" style="width:100%;padding:12px;background:var(--earth);color:var(--sand);border:none;border-radius:var(--r2);font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;transition:all .2s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--earth)'" onmouseout="this.style.background='var(--earth)';this.style.color='var(--sand)'">
+        دخول لوحة الإدارة
+      </button>
+      <div style="margin-top:12px;font-size:11px;color:var(--text3)">للتجربة: admin / admin123</div>
+    </div>
+  </div>
+
+  <div id="admin-panel" style="display:none" class="sec">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+      <div>
+        <div class="sec-kicker">إدارة المنصة</div>
+        <div class="sec-title" style="font-family:'Amiri',serif">لوحة تحكم أوتاد 🛡️</div>
+        <div class="sec-sub">آخر تحديث: اليوم 10:30 ص</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="sendTestNotif()" style="padding:9px 16px;background:var(--golddim);color:var(--gold);border:1px solid rgba(184,132,42,0.25);border-radius:var(--r2);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer">🔔 اختبار إشعار</button>
+        <button onclick="adminLogout()" style="padding:9px 16px;background:rgba(160,82,45,0.1);color:var(--terracotta);border:1px solid rgba(160,82,45,0.2);border-radius:var(--r2);font-family:inherit;font-size:12px;cursor:pointer">خروج</button>
+      </div>
+    </div>
+
+    <div class="admin-stats">
+      <div class="admin-stat"><div class="as-ico">👤</div><div class="as-n">1,284</div><div class="as-l">مستخدم مسجل</div><div class="as-chg up">↑ 43 هذا الأسبوع</div></div>
+      <div class="admin-stat"><div class="as-ico">🏢</div><div class="as-n">312</div><div class="as-l">مكتب عقاري</div><div class="as-chg up">↑ 8 هذا الأسبوع</div></div>
+      <div class="admin-stat"><div class="as-ico">📋</div><div class="as-n">847</div><div class="as-l">طلب نشط</div><div class="as-chg up">↑ 67 اليوم</div></div>
+      <div class="admin-stat"><div class="as-ico">💬</div><div class="as-n">3,420</div><div class="as-l">رسالة أُرسلت</div><div class="as-chg up">↑ 234 اليوم</div></div>
+    </div>
+
+    <!-- ═══ SEARCH & INVESTIGATION ═══ -->
+    <div class="admin-card" style="margin-bottom:16px;border-right:4px solid var(--gold)">
+      <div class="admin-card-title" style="font-size:15px">
+        🔍 بحث واستعراض متقدم
+        <span style="font-size:11px;font-weight:400;color:var(--text3)">ابحث عن أي شخص أو مكتب واطّلع على كامل نشاطه</span>
+      </div>
+
+      <!-- SEARCH BAR ROW -->
+      <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+        <div style="flex:2;min-width:200px;display:flex;align-items:center;gap:8px;background:var(--sand);border:1.5px solid var(--border2);border-radius:var(--r2);padding:9px 14px;transition:border-color .2s" id="inv-search-wrap">
+          <span style="font-size:15px">🔍</span>
+          <input type="text" id="inv-q" placeholder="ابحث باسم الشخص أو المكتب أو الوسيط أو رقم الجوال..." style="border:none;background:none;outline:none;font-family:inherit;font-size:13px;color:var(--text);flex:1" oninput="liveInvSearch(this.value)">
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;background:var(--sand);border:1.5px solid var(--border2);border-radius:var(--r2);padding:9px 14px">
+          <span style="font-size:13px;color:var(--text3)">📅</span>
+          <input type="date" id="inv-date" style="border:none;background:none;outline:none;font-family:inherit;font-size:13px;color:var(--text);cursor:pointer" onchange="liveInvSearch(document.getElementById('inv-q').value)">
+        </div>
+        <select id="inv-type" style="padding:9px 14px;background:var(--sand);border:1.5px solid var(--border2);border-radius:var(--r2);font-family:inherit;font-size:12px;color:var(--text);outline:none;cursor:pointer" onchange="liveInvSearch(document.getElementById('inv-q').value)">
+          <option value="">كل الأنواع</option>
+          <option value="وسيط">وسيط</option>
+          <option value="مستثمر">مستثمر</option>
+          <option value="مالك">مالك</option>
+          <option value="باحث">باحث</option>
+          <option value="مكتب">مكتب عقاري</option>
+        </select>
+        <button onclick="clearInvSearch()" style="padding:9px 14px;background:var(--sand2);border:1px solid var(--border);border-radius:var(--r2);font-family:inherit;font-size:12px;color:var(--text3);cursor:pointer">مسح</button>
+      </div>
+
+      <!-- QUICK DATE FILTERS -->
+      <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap">
+        <button class="inv-date-quick on" onclick="setInvDate('today',this)">اليوم</button>
+        <button class="inv-date-quick" onclick="setInvDate('yesterday',this)">البارحة</button>
+        <button class="inv-date-quick" onclick="setInvDate('week',this)">هذا الأسبوع</button>
+        <button class="inv-date-quick" onclick="setInvDate('month',this)">هذا الشهر</button>
+        <button class="inv-date-quick" onclick="setInvDate('all',this)">الكل</button>
+      </div>
+
+      <!-- SEARCH RESULTS -->
+      <div id="inv-results">
+        <div style="text-align:center;padding:30px;color:var(--text3);font-size:13px">
+          <div style="font-size:32px;margin-bottom:8px">🔍</div>
+          ابدأ الكتابة للبحث عن أي مستخدم أو مكتب...
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROFILE INVESTIGATION PANEL ═══ -->
+    <div id="inv-profile-panel" style="display:none;margin-bottom:16px">
+      <div class="admin-card" style="border-right:4px solid var(--terracotta)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div id="inv-profile-av" style="width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;flex-shrink:0"></div>
+            <div>
+              <div id="inv-profile-name" style="font-family:'Amiri',serif;font-size:18px;font-weight:700;color:var(--earth)"></div>
+              <div id="inv-profile-meta" style="font-size:12px;color:var(--text3);margin-top:2px"></div>
+            </div>
+          </div>
+          <button onclick="closeInvProfile()" style="padding:7px 14px;background:var(--sand2);border:1px solid var(--border);border-radius:var(--r2);font-family:inherit;font-size:12px;cursor:pointer;color:var(--text3)">✕ إغلاق</button>
+        </div>
+
+        <!-- PROFILE STATS -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px" id="inv-profile-stats"></div>
+
+        <!-- TABS -->
+        <div style="display:flex;gap:4px;background:var(--sand2);padding:4px;border-radius:var(--r2);margin-bottom:16px;width:fit-content">
+          <button class="inv-tab on" onclick="switchInvTab('ads',this)">📢 الإعلانات والطلبات</button>
+          <button class="inv-tab" onclick="switchInvTab('msgs',this)">💬 الرسائل</button>
+          <button class="inv-tab" onclick="switchInvTab('activity',this)">📊 سجل النشاط</button>
+          <button class="inv-tab" onclick="switchInvTab('reports',this)">⚠️ البلاغات</button>
+        </div>
+
+        <!-- TAB CONTENT -->
+        <div id="inv-tab-ads" class="inv-tab-content"></div>
+        <div id="inv-tab-msgs" class="inv-tab-content" style="display:none"></div>
+        <div id="inv-tab-activity" class="inv-tab-content" style="display:none"></div>
+        <div id="inv-tab-reports" class="inv-tab-content" style="display:none"></div>
+      </div>
+    </div>
+
+    <div class="admin-grid" style="margin-bottom:16px">
+      <!-- users table -->
+      <div class="admin-card" style="grid-column:1/-1">
+        <div class="admin-card-title">
+          المستخدمون المسجلون
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="text" placeholder="بحث..." style="padding:6px 10px;border:1px solid var(--border);border-radius:var(--r2);font-family:inherit;font-size:12px;background:var(--sand);color:var(--text);outline:none;width:140px" oninput="filterAdminUsers(this.value)">
+            <select style="padding:6px 10px;border:1px solid var(--border);border-radius:var(--r2);font-family:inherit;font-size:12px;background:var(--sand);color:var(--text);outline:none" onchange="filterAdminUsers('',this.value)">
+              <option value="">كل الأنواع</option>
+              <option value="وسيط">وسطاء</option>
+              <option value="مستثمر">مستثمرون</option>
+              <option value="مالك">ملاك</option>
+              <option value="باحث">باحثون</option>
+            </select>
+          </div>
+        </div>
+        <table class="admin-table" id="users-table">
+          <thead><tr><th>المستخدم</th><th>النوع</th><th>رقم الجوال</th><th>تاريخ التسجيل</th><th>الحالة</th><th>إجراء</th></tr></thead>
+          <tbody id="users-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- offices moderation -->
+      <div class="admin-card">
+        <div class="admin-card-title">المكاتب بانتظار الموافقة <span style="background:rgba(160,82,45,0.1);color:var(--terracotta);font-size:10px;padding:2px 7px;border-radius:10px">4 جديد</span></div>
+        <div id="pending-offices"></div>
+      </div>
+
+      <!-- fal verification queue -->
+      <div class="admin-card">
+        <div class="admin-card-title">طلبات التحقق من فال <span style="background:var(--golddim);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:10px">7 طلب</span></div>
+        <div id="fal-queue"></div>
+      </div>
+
+      <!-- activity chart -->
+      <div class="admin-card">
+        <div class="admin-card-title">نشاط المنصة — آخر 7 أيام</div>
+        <div id="activity-chart"></div>
+      </div>
+
+      <!-- reports -->
+      <div class="admin-card">
+        <div class="admin-card-title">البلاغات والشكاوى <span style="background:rgba(160,82,45,0.1);color:var(--terracotta);font-size:10px;padding:2px 7px;border-radius:10px">3 جديد</span></div>
+        <div id="reports-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAL MODAL -->
+<div id="m-fal" class="moverlay">
+  <div class="mbox" style="max-width:480px">
+    <div class="mbox-top"><div class="mtitle">🏛️ التحقق من ترخيص فال</div><button class="mx" onclick="hideM('m-fal')">✕</button></div>
+    <p style="font-size:13px;color:var(--text3);margin-bottom:18px;line-height:1.7">أدخل رقم ترخيص فال للتحقق من صحته ومطابقته مع سجلات الهيئة العقارية السعودية</p>
+    <div class="fal-box" id="fal-box">
+      <div class="fr" style="margin-bottom:0">
+        <label class="fl">رقم ترخيص فال</label>
+        <div style="display:flex;gap:8px">
+          <input class="fi" id="fal-input" placeholder="مثال: FAL-1234567890" style="flex:1" oninput="falReset()">
+          <button onclick="checkFal()" id="fal-btn" style="padding:10px 18px;background:var(--earth);color:var(--sand);border:none;border-radius:var(--r2);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s">تحقق</button>
+        </div>
+      </div>
+      <div id="fal-status-box" style="display:none"></div>
+      <div id="fal-details-box" style="display:none" class="fal-details"></div>
+    </div>
+    <div style="background:var(--sand2);border-radius:var(--r2);padding:12px 14px;font-size:11px;color:var(--text3);line-height:1.7;margin-top:4px">
+      💡 يتم التحقق من خلال قاعدة بيانات الهيئة العقارية السعودية (فال). تأكد من إدخال الرقم بالصيغة الصحيحة.
+    </div>
+    <div class="m-acts"><button class="btn-cancel" onclick="hideM('m-fal')">إغلاق</button></div>
+  </div>
+</div>
+
+<!-- RATING MODAL -->
+<div id="m-rating" class="moverlay">
+  <div class="mbox" style="max-width:500px">
+    <div class="mbox-top"><div class="mtitle" id="rating-modal-title">⭐ تقييم المكتب</div><button class="mx" onclick="hideM('m-rating')">✕</button></div>
+
+    <!-- summary -->
+    <div class="rating-summary">
+      <div class="big-score" id="rating-score">4.8</div>
+      <div>
+        <div style="font-size:12px;color:var(--text3);margin-bottom:4px">بناءً على <span id="rating-count">127</span> تقييم</div>
+        <div style="font-size:14px;color:var(--gold)">★★★★★</div>
+      </div>
+      <div class="score-bars" id="score-bars"></div>
+    </div>
+
+    <!-- reviews list -->
+    <div style="max-height:220px;overflow-y:auto;margin-bottom:14px" id="reviews-list"></div>
+
+    <!-- write review -->
+    <div class="write-review">
+      <div class="wr-title">✍️ اكتب تقييمك</div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:12px;color:var(--text3);margin-bottom:6px">تقييمك</div>
+        <div class="star-row" id="write-stars">
+          <span class="s-star" onclick="setWriteStar(1)" onmouseover="hoverStar(1)" onmouseout="unhoverStar()">★</span>
+          <span class="s-star" onclick="setWriteStar(2)" onmouseover="hoverStar(2)" onmouseout="unhoverStar()">★</span>
+          <span class="s-star" onclick="setWriteStar(3)" onmouseover="hoverStar(3)" onmouseout="unhoverStar()">★</span>
+          <span class="s-star" onclick="setWriteStar(4)" onmouseover="hoverStar(4)" onmouseout="unhoverStar()">★</span>
+          <span class="s-star" onclick="setWriteStar(5)" onmouseover="hoverStar(5)" onmouseout="unhoverStar()">★</span>
+        </div>
+      </div>
+      <textarea class="fi" id="review-text" rows="3" placeholder="اكتب تجربتك مع هذا المكتب..."></textarea>
+      <div class="m-acts" style="margin-top:10px">
+        <button class="btn-cancel" onclick="hideM('m-rating')">إلغاء</button>
+        <button class="btn-submit" onclick="submitReview()">نشر التقييم</button>
+      </div>
+      <div id="review-success" class="toast2">✅ تم نشر تقييمك بنجاح! شكراً لمشاركتك</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT PANEL -->
+<div class="chat-panel" id="chat-panel">
+  <div class="cp-head">
+    <div class="cp-av" id="cp-av">م</div>
+    <div style="flex:1">
+      <div class="cp-name" id="cp-name">مكتب الراشد</div>
+      <div class="cp-status">متصل الآن</div>
+    </div>
+    <button class="cp-close" onclick="closeChat()">✕</button>
+  </div>
+  <div class="cp-ref" id="cp-ref">
+    <span class="cp-ref-tag">طلب</span>
+    <span id="cp-ref-text">استفسار عقاري</span>
+  </div>
+  <div class="cp-msgs" id="cp-msgs"></div>
+  <div class="cp-input-row">
+    <div class="cp-input-wrap">
+      <textarea id="cp-textarea" rows="1" placeholder="اكتب رسالتك..." onkeydown="cpKey(event)" oninput="cpResize(this)"></textarea>
+    </div>
+    <button class="cp-send" onclick="cpSend()">➤</button>
+  </div>
+</div>
+
+<!-- FAB -->
+<button class="chat-fab" id="chat-fab" onclick="goPage('profile');setTimeout(()=>{const b=document.querySelector('.pm:nth-child(4)');if(b)showPT('msgs',b);},200)" title="الرسائل">
+  💬<div class="chat-fab-badge">5</div>
+</button>
+
+<!-- GLOBAL TOAST -->
+<div id="g-toast"></div>
+
+<script>
+const OD=[
+  {id:1,nm:'مكتب الراشد العقاري',city:'الرياض',area:'العليا',ph:'0501234567',wa:'966501234567',exp:'15 سنة',spec:'أراضي، فلل',r:4.8,rv:127,b:'fal',c:'#2c1f0e',i:'ر'},
+  {id:2,nm:'النخيل للعقارات',city:'جدة',area:'الروضة',ph:'0559876543',wa:'966559876543',exp:'10 سنوات',spec:'شقق، تجاري',r:4.6,rv:89,b:'fal',c:'#5c7a4e',i:'ن'},
+  {id:3,nm:'مكتب المدار العقاري',city:'الدمام',area:'الفيصلية',ph:'0531122334',wa:'966531122334',exp:'8 سنوات',spec:'أراضي، شقق',r:4.3,rv:54,b:'',c:'#a0522d',i:'م'},
+  {id:4,nm:'الأفق العقاري',city:'الرياض',area:'النرجس',ph:'0508877665',wa:'966508877665',exp:'12 سنة',spec:'فلل، شقق',r:4.7,rv:203,b:'prem',c:'#54401e',i:'أ'},
+  {id:5,nm:'بيوت الجزيرة',city:'مكة',area:'العزيزية',ph:'0545566778',wa:'966545566778',exp:'6 سنوات',spec:'شقق، تجاري',r:4.1,rv:41,b:'fal',c:'#3d2c14',i:'ب'},
+  {id:6,nm:'مكتب الغانم العقاري',city:'الرياض',area:'حطين',ph:'0512233445',wa:'966512233445',exp:'20 سنة',spec:'أراضي تجارية',r:4.9,rv:312,b:'prem',c:'#b8842a',i:'غ'},
+];
+const RD=[
+  {id:1,t:'land',ic:'🗺️',ib:'rgba(160,82,45,0.1)',title:'أرض سكنية — حي النرجس، شمال الرياض',city:'الرياض',price:'700,000–1,200,000',area:'400–600 م²',date:'منذ يومين',who:'أحمد العتيبي',ph:'0501234567',wa:'966501234567',role:'وسيط'},
+  {id:2,t:'apt',ic:'🏢',ib:'rgba(44,31,14,0.07)',title:'شقة 3 غرف — حي الروضة أو الزهراء، جدة',city:'جدة',price:'حتى 400,000',area:'150–200 م²',date:'اليوم',who:'سارة القحطاني',ph:'0559876543',wa:'966559876543',role:'عميل'},
+  {id:3,t:'villa',ic:'🏡',ib:'rgba(92,122,78,0.1)',title:'فيلا 5 غرف بمسبح — شمال الرياض',city:'الرياض',price:'2,500,000–4,000,000',area:'500+ م²',date:'منذ 3 أيام',who:'خالد الشمري',ph:'0508877665',wa:'966508877665',role:'وسيط'},
+  {id:4,t:'com',ic:'🏪',ib:'rgba(184,132,42,0.08)',title:'محل تجاري — شارع رئيسي بالدمام',city:'الدمام',price:'إيجار 80,000–150,000/سنة',area:'80–150 م²',date:'منذ أسبوع',who:'فهد الدوسري',ph:'0531122334',wa:'966531122334',role:'عميل'},
+  {id:5,t:'land',ic:'🗺️',ib:'rgba(160,82,45,0.1)',title:'أرض تجارية شارعين — طريق الملك عبدالعزيز',city:'الرياض',price:'3,000,000–5,000,000',area:'1000+ م²',date:'اليوم',who:'محمد السهلي',ph:'0512233445',wa:'966512233445',role:'وسيط'},
+  {id:6,t:'apt',ic:'🏢',ib:'rgba(44,31,14,0.07)',title:'شقة 2 غرف للإيجار — حي السليمانية',city:'الرياض',price:'إيجار 40,000/سنة',area:'100–130 م²',date:'منذ 5 أيام',who:'ريم الحربي',ph:'0545566778',wa:'966545566778',role:'عميل'},
+];
+const LD=[
+  {t:'أرض',c:'#2c1f0e',ic:'🗺️',p:'850,000',s:'للبيع',title:'أرض سكنية — حي الملقا، الرياض',a:'500 م²',x:'شارعين',ow:'مالك مباشر',ph:'0501234567',wa:'966501234567'},
+  {t:'شقة',c:'#3d2c14',ic:'🏢',p:'320,000',s:'للبيع',title:'شقة 3 غرف — حي الروضة، جدة',a:'175 م²',x:'الدور 3',ow:'وسيط موثق',ph:'0559876543',wa:'966559876543'},
+  {t:'فيلا',c:'#54401e',ic:'🏡',p:'3,200,000',s:'للبيع',title:'فيلا 5 غرف مسبح — الرحمانية، الرياض',a:'600 م²',x:'مسبح',ow:'مالك مباشر',ph:'0508877665',wa:'966508877665'},
+  {t:'تجاري',c:'#5c7a4e',ic:'🏪',p:'إيجار 120,000/سنة',s:'للإيجار',title:'صالة تجارية — التحلية، جدة',a:'200 م²',x:'واجهة زجاجية',ow:'وسيط',ph:'0531122334',wa:'966531122334'},
+  {t:'أرض',c:'#a0522d',ic:'🗺️',p:'2,100,000',s:'للبيع',title:'أرض تجارية — الدائري الشرقي، الرياض',a:'800 م²',x:'3 شوارع',ow:'مالك مباشر',ph:'0512233445',wa:'966512233445'},
+  {t:'شقة',c:'#b8842a',ic:'🏢',p:'480,000',s:'للبيع',title:'دوبلكس 4 غرف — الدمام',a:'220 م²',x:'روف خاص',ow:'وسيط موثق',ph:'0545566778',wa:'966545566778'},
+];
+
+let sel=new Set(),savedL=new Set(),isLoggedIn=false,currentUser=null,pendingAction=null;
+let chatMsgs=[],chatTarget=null,chatBusy=false;
+const PROT=['offices','requests','listings','dash','profile'];
+const PNAMES={offices:'المكاتب العقارية',requests:'الطلبات',listings:'العقارات',dash:'لوحة التحكم',profile:'حسابي'};
+
+function nowTime(){const n=new Date();return n.getHours()+':'+(n.getMinutes()<10?'0':'')+n.getMinutes()+' '+(n.getHours()<12?'ص':'م');}
+
+/* ─ CHAT ─ */
+function openChat(nm,ini,col,ref,wa,ph){
+  if(!requireAuth(()=>openChat(nm,ini,col,ref,wa,ph)))return;
+  chatTarget={nm,ini,col,wa,ph};
+  document.getElementById('cp-av').textContent=ini;
+  document.getElementById('cp-av').style.background=col;
+  document.getElementById('cp-name').textContent=nm;
+  document.getElementById('cp-ref-text').textContent=ref;
+  if(!chatMsgs.length||chatTarget.nm!==nm){
+    chatMsgs=[{from:'other',text:'السلام عليكم، يسعدنا التواصل معك. كيف يمكننا مساعدتك؟',time:nowTime()}];
+  }
+  renderCP();
+  document.getElementById('chat-panel').classList.add('open');
+  document.getElementById('chat-fab').style.display='none';
+  setTimeout(()=>document.getElementById('cp-textarea').focus(),300);
+}
+function closeChat(){
+  document.getElementById('chat-panel').classList.remove('open');
+  document.getElementById('chat-fab').style.display='flex';
+}
+function renderCP(){
+  const el=document.getElementById('cp-msgs');
+  el.innerHTML=chatMsgs.map(m=>`
+    <div class="cm-row ${m.from==='me'?'mine':''}">
+      <div class="cm-av" style="background:${m.from==='me'?'var(--gold)':chatTarget.col}">${m.from==='me'?'أ':chatTarget.ini}</div>
+      <div>
+        <div class="cm-bubble ${m.from==='me'?'mine':'other'}">${m.text}</div>
+        <div class="cm-time ${m.from==='me'?'mine':''}">${m.time}${m.from==='me'?' ✓✓':''}</div>
+      </div>
+    </div>`).join('');
+  el.scrollTop=el.scrollHeight;
+}
+function cpSend(){
+  const ta=document.getElementById('cp-textarea');
+  const txt=ta.value.trim();
+  if(!txt||!chatTarget)return;
+  chatMsgs.push({from:'me',text:txt,time:nowTime()});
+  ta.value='';ta.style.height='auto';
+  renderCP();
+  if(!chatBusy){
+    chatBusy=true;
+    setTimeout(()=>{
+      const el=document.getElementById('cp-msgs');
+      const d=document.createElement('div');
+      d.className='cm-row';d.id='cp-typing';
+      d.innerHTML='<div class="cm-av" style="background:'+chatTarget.col+'">'+chatTarget.ini+'</div><div class="typing-dots"><div class="td"></div><div class="td"></div><div class="td"></div></div>';
+      el.appendChild(d);el.scrollTop=el.scrollHeight;
+      const rs=['شكراً لتواصلك، سنراجع طلبك ونرد فوراً','حسناً، يمكنني ترتيب موعد معاينة قريباً','تم استلام رسالتك، هل تريد مزيداً من التفاصيل؟','يسعدنا مساعدتك، هل لديك مرونة في الميزانية؟'];
+      setTimeout(()=>{
+        document.getElementById('cp-typing')?.remove();
+        chatMsgs.push({from:'other',text:rs[Math.floor(Math.random()*rs.length)],time:nowTime()});
+        renderCP();chatBusy=false;
+      },1800);
+    },600);
+  }
+}
+function cpKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();cpSend();}}
+function cpResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,70)+'px';}
+
+function openWa(wa,ref){
+  const msg=encodeURIComponent('السلام عليكم، تواصلت معكم عبر منصة أوتاد بخصوص: '+ref);
+  window.open('https://wa.me/'+wa+'?text='+msg,'_blank');
+}
+
+/* ─ CARDS ─ */
+function oCard(o,noChk=false){
+  return`<div class="o-card ${o.b==='prem'?'prem':''}" id="oc${o.id}">
+    <div class="oc-head">
+      <div class="oc-av" style="background:${o.c}">${o.i}</div>
+      <div style="flex:1">
+        <div class="oc-nm">${o.nm}</div>
+        <div class="oc-loc">📍 ${o.city} — ${o.area}</div>
+        <div class="oc-badges">
+          ${o.b==='fal'?'<span class="badge b-fal">✔ فال</span>':''}
+          ${o.b==='prem'?'<span class="badge b-prem">👑 بريميوم</span>':''}
+          ${o.b===''?'<span class="badge b-new">مسجل</span>':''}
+        </div>
+      </div>
+      ${!noChk?`<label style="cursor:pointer"><input type="checkbox" style="width:15px;height:15px;accent-color:var(--gold)" ${sel.has(o.id)?'checked':''} onchange="togSel(${o.id},this)"></label>`:''}
+    </div>
+    <div class="oc-info">
+      <div class="oc-inf"><em>📞</em>${o.ph}</div><div class="oc-inf"><em>⏱</em>${o.exp}</div>
+      <div class="oc-inf"><em>🏠</em>${o.spec}</div><div class="oc-inf"><em>👥</em>${o.rv} تقييم</div>
+    </div>
+    <div class="oc-stars">
+      <span class="stars-txt">${'★'.repeat(Math.round(o.r))}${'☆'.repeat(5-Math.round(o.r))}</span>
+      <span class="r-n">${o.r}</span><span class="r-c">(${o.rv})</span>
+    </div>
+    <div class="contact-row">
+      <button class="btn-inner" onclick="chatMsgs=[];openChat('${o.nm}','${o.i}','${o.c}','استفسار عن ${o.nm}','${o.wa}','${o.ph}')">💬 رسالة</button>
+      <button class="btn-wa" onclick="openWa('${o.wa}','خدمات ${o.nm}')">📱 واتساب</button>
+      <button class="btn-tel" onclick="gToast('📞 اتصال بـ ${o.ph}')" title="${o.ph}">📞</button>
+      <button style="padding:9px 10px;background:var(--golddim);color:var(--gold);border:1px solid rgba(184,132,42,0.22);border-radius:var(--r2);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:4px" onclick="openRating('${o.nm}',${o.r},${o.rv})" onmouseover="this.style.background='var(--gold)';this.style.color='var(--earth)'" onmouseout="this.style.background='var(--golddim)';this.style.color='var(--gold)'">⭐ تقييم</button>
+    </div>
+  </div>`;
+}
+
+function renderOff(){
+  const q=(document.getElementById('o-q')||{value:''}).value.toLowerCase();
+  const c=(document.getElementById('o-c')||{value:''}).value;
+  const s=(document.getElementById('o-s')||{value:''}).value;
+  const v=(document.getElementById('o-v')||{value:''}).value;
+  const f=OD.filter(o=>(!q||o.nm.includes(q)||o.city.includes(q))&&(!c||o.city===c)&&(!s||o.spec.includes(s))&&(!v||o.b===v));
+  const g=document.getElementById('off-grid');if(g)g.innerHTML=f.map(o=>oCard(o)).join('');
+  const hg=document.getElementById('h-offices');if(hg)hg.innerHTML=OD.slice(0,3).map(o=>oCard(o,true)).join('');
+}
+
+function renderLst(){
+  const html=LD.map((l,i)=>`
+    <div class="l-card">
+      <div class="l-img" style="background:${l.c}"><span style="font-size:44px;opacity:.2">${l.ic}</span>
+        <span class="l-tbadge">${l.t}</span><span class="l-sbadge">${l.s}</span><span class="l-ow">👤 ${l.ow}</span>
+      </div>
+      <div class="l-body">
+        <div class="l-price">${l.p} <small>ريال</small></div>
+        <div class="l-title">${l.title}</div>
+        <div class="l-tags"><span class="tag ta">${l.a}</span><span class="tag tc">${l.x}</span></div>
+        <div class="contact-row">
+          <button class="btn-inner" onclick="chatMsgs=[];openChat('${l.ow}','${l.ow.charAt(0)}','${l.c}','${l.title}','${l.wa}','${l.ph}')">💬 رسالة</button>
+          <button class="btn-wa" onclick="openWa('${l.wa}','${l.title}')">📱 واتساب</button>
+          <button class="btn-tel" onclick="gToast('📞 جارٍ الاتصال...')" title="اتصال">📞</button>
+          <button style="width:36px;background:var(--sand2);border:1px solid var(--border);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .2s" class="${savedL.has(i)?'btn-hrt on':'btn-hrt'}" onclick="togSaveL(${i},this)">${savedL.has(i)?'❤️':'🤍'}</button>
+        </div>
+      </div>
+    </div>`).join('');
+  const g=document.getElementById('lst-grid');if(g)g.innerHTML=html;
+  const hg=document.getElementById('h-listings');
+  if(hg)hg.innerHTML=LD.slice(0,3).map(l=>`
+    <div class="l-card">
+      <div class="l-img" style="background:${l.c}"><span style="font-size:44px;opacity:.2">${l.ic}</span>
+        <span class="l-tbadge">${l.t}</span><span class="l-sbadge">${l.s}</span>
+      </div>
+      <div class="l-body">
+        <div class="l-price">${l.p} <small>ريال</small></div>
+        <div class="l-title">${l.title}</div>
+        <div class="l-tags"><span class="tag ta">${l.a}</span><span class="tag tc">${l.x}</span></div>
+        <div class="contact-row">
+          <button class="btn-inner" onclick="chatMsgs=[];openChat('${l.ow}','${l.ow.charAt(0)}','${l.c}','${l.title}','${l.wa}','${l.ph}')">💬 رسالة</button>
+          <button class="btn-wa" onclick="openWa('${l.wa}','${l.title}')">📱 واتساب</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function renderReq(type='all'){
+  const f=type==='all'?RD:RD.filter(r=>r.t===type);
+  const html=f.map(r=>`
+    <div class="req-card">
+      <div class="req-ico" style="background:${r.ib}">${r.ic}</div>
+      <div class="req-body">
+        <div class="req-title">${r.title}</div>
+        <div class="req-tags">
+          <span class="tag tc">📍 ${r.city}</span><span class="tag tp">${r.price} ريال</span>
+          <span class="tag ta">${r.area}</span><span class="tag td">${r.date}</span>
+          <span class="tag ${r.role==='وسيط'?'tw':'tc'}">${r.role}</span>
+        </div>
+        <div class="req-who">👤 ${r.who}</div>
+        <div class="contact-row" style="margin-top:10px">
+          <button class="btn-inner" onclick="chatMsgs=[];openChat('${r.who}','${r.who.charAt(0)}','var(--earth2)','${r.title}','${r.wa}','${r.ph}')">💬 رسالة داخلية</button>
+          <button class="btn-wa" onclick="openWa('${r.wa}','${r.title}')">📱 واتساب</button>
+          <button class="btn-tel" onclick="gToast('📞 جارٍ الاتصال...')" title="اتصال">📞</button>
+        </div>
+      </div>
+      <div class="req-acts">
+        <button class="btn-offer" onclick="msgFor('${r.title}')">رفع عرض</button>
+        <button class="btn-det">تفاصيل</button>
+      </div>
+    </div>`).join('');
+  const el=document.getElementById('req-list');if(el)el.innerHTML=html;
+}
+
+function togSel(id,cb){if(cb.checked)sel.add(id);else sel.delete(id);updBulk()}
+function togSaveL(i,btn){if(!requireAuth(()=>togSaveL(i,btn)))return;if(savedL.has(i)){savedL.delete(i);btn.innerHTML='🤍';btn.classList.remove('on')}else{savedL.add(i);btn.innerHTML='❤️';btn.classList.add('on')}}
+function updBulk(){const n=sel.size,b=document.getElementById('bulk-bar');if(!b)return;if(n>0){b.classList.add('on');document.getElementById('bulk-txt').textContent='تم تحديد '+n+' مكتب'}else b.classList.remove('on')}
+function clearSel(){sel.clear();document.querySelectorAll('#off-grid input[type=checkbox]').forEach(c=>c.checked=false);updBulk()}
+function fReq(t,btn){document.querySelectorAll('.rtab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderReq(t)}
+function msgFor(nm){if(!requireAuth(()=>msgFor(nm)))return;document.getElementById('m-msg-title').textContent='رفع عرض على: '+nm;showM('m-msg')}
+function stab(btn){document.querySelectorAll('.s-tab').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+
+function requireAuth(action){
+  if(isLoggedIn)return true;
+  pendingAction=action||null;
+  showGate();
+  return false;
+}
+function showGate(title,desc){
+  const wall=document.getElementById('auth-wall');
+  document.getElementById('wall-title').textContent=title||'يجب التسجيل أولاً';
+  document.getElementById('wall-desc').textContent=desc||'سجّل مجاناً واستخدم جميع خدمات أوتاد بلا أي رسوم';
+  wall.classList.add('on');
+}
+function doLogin(){
+  const ph=document.getElementById('l-phone').value.trim();
+  const pw=document.getElementById('l-pass').value.trim();
+  const err=document.getElementById('l-err');
+  if(!ph||!pw){err.classList.add('on');err.textContent='⚠️ يرجى إدخال رقم الجوال وكلمة المرور';return;}
+  isLoggedIn=true;currentUser={name:'أحمد العتيبي',phone:ph};
+  hideM('m-login');updateNav();
+  gToast('مرحباً بك في أوتاد! ✅');
+  checkAdminAccess();
+  if(pendingAction){pendingAction();pendingAction=null;}
+}
+function doRegister(){
+  const nm=document.getElementById('r-name').value.trim();
+  const ph=document.getElementById('r-phone').value.trim();
+  const pw=document.getElementById('r-pw').value.trim();
+  const err=document.getElementById('r-err');
+  if(!nm||!ph||!pw){err.classList.add('on');err.textContent='⚠️ يرجى تعبئة الحقول المطلوبة';return;}
+  // get selected account type
+  const typeEl=document.querySelector('#m-reg .acct-type-btn.on');
+  const acctType=typeEl?typeEl.textContent.trim():'باحث عن عقار';
+  const investType=document.getElementById('r-invest-type')?.value||'';
+  const budget=document.getElementById('r-budget')?.value||'';
+  isLoggedIn=true;
+  currentUser={name:nm,phone:ph,acctType,investType,budget};
+  hideM('m-reg');updateNav();
+  gToast('أهلاً '+nm+'! تم إنشاء حسابك 🎉');
+  checkAdminAccess();
+}
+function doLogout(){isLoggedIn=false;currentUser=null;updateNav();closeChat();goPage('home');gToast('تم تسجيل الخروج')}
+function updateNav(){
+  const chip=document.getElementById('user-chip');
+  const bi=document.getElementById('btn-in');const bu=document.getElementById('btn-up');
+  if(isLoggedIn&&currentUser){
+    chip.style.display='flex';
+    document.getElementById('chip-av').textContent=currentUser.name.charAt(0)+'ع';
+    document.getElementById('chip-nm').textContent=currentUser.name.split(' ')[0];
+    if(bi)bi.style.display='none';if(bu)bu.style.display='none';
+    const dg=document.getElementById('dash-greeting');if(dg)dg.textContent='مرحباً، '+currentUser.name.split(' ')[0]+' 👋';
+    const pa=document.getElementById('prof-av');if(pa)pa.textContent=currentUser.name.charAt(0)+'ع';
+    const pn=document.getElementById('prof-nm');if(pn)pn.textContent=currentUser.name;
+    const pr=document.getElementById('prof-role');
+    if(pr&&currentUser.acctType){
+      const roleMap={'🏢 وسيط عقاري':'وسيط عقاري','🏠 مالك عقار':'مالك عقار','🔍 باحث عن عقار':'باحث عن عقار','💰 مستثمر عقاري':'مستثمر عقاري'};
+      const roleEmoji={'وسيط عقاري':'🏢','مالك عقار':'🏠','باحث عن عقار':'🔍','مستثمر عقاري':'💰'};
+      const rLabel=roleMap[currentUser.acctType]||currentUser.acctType.replace(/^[^\s]+\s/,'');
+      pr.textContent=( roleEmoji[rLabel]||'👤' )+' '+rLabel+' • '+( currentUser.city||'المملكة' );
+    }
+    // show investor section in profile if investor
+    const invSec=document.getElementById('invest-profile-sec');
+    if(invSec)invSec.style.display=(currentUser.acctType&&currentUser.acctType.includes('مستثمر'))?'block':'none';
+    document.body.classList.remove('guest');
+  } else {
+    chip.style.display='none';
+    if(bi)bi.style.display='';if(bu)bu.style.display='';
+    document.body.classList.add('guest');
+  }
+}
+
+function hideWall(){document.getElementById('auth-wall').classList.remove('on')}
+function goPage(id,btn){
+  if(!isLoggedIn&&id!=='home'&&id!=='admin'){
+    pendingAction=()=>goPage(id,btn);
+    document.getElementById('wall-page').textContent=PNAMES[id]||id;
+    showGate('يجب التسجيل للوصول إلى '+( PNAMES[id]||id),'أنشئ حساباً مجانياً خلال ثوانٍ وابدأ الاستخدام فوراً — بلا رسوم');
+    return;
+  }
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nl').forEach(b=>b.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('on');
+  if(btn)btn.classList.add('on');
+  window.scrollTo(0,0);renderOff();renderLst();renderReq();
+}
+function showM(id){document.getElementById(id).classList.add('on')}
+function hideM(id){document.getElementById(id).classList.remove('on');document.querySelectorAll('#'+id+' .f-err').forEach(e=>e.classList.remove('on'));}
+function doToast(id){if(!requireAuth())return;const e=document.getElementById(id);if(!e)return;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),3000)}
+function showPT(t,btn){document.querySelectorAll('.pt').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.pm').forEach(b=>b.classList.remove('on'));document.getElementById('pt-'+t).classList.add('on');if(btn)btn.classList.add('on');}
+function gToast(msg){const t=document.getElementById('g-toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),3500)}
+function selAcct(el){
+  document.querySelectorAll('.acct-type-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  const txt=el.textContent.trim();
+  const isInvestor=txt.includes('مستثمر');
+  const isBroker=txt.includes('وسيط');
+  const fr=document.getElementById('fal-row');
+  const ir=document.getElementById('invest-row');
+  const br=document.getElementById('budget-row');
+  if(fr)fr.style.display=isBroker?'':'none';
+  if(ir)ir.style.display=isInvestor?'':'none';
+  if(br)br.style.display=isInvestor?'':'none';
+}
+
+document.querySelectorAll('.moverlay').forEach(m=>{
+  if(m.id==='auth-wall')return;
+  m.addEventListener('click',function(e){if(e.target===this)this.classList.remove('on')});
+});
+updateNav();renderOff();renderLst();renderReq();
+
+
+/* ═══════════════════════════════════════════════
+   1. NOTIFICATION SYSTEM
+═══════════════════════════════════════════════ */
+const NOTIFS = [
+  {id:1,unread:true,ico:'💬',bg:'var(--golddim)',title:'<strong>مكتب الراشد</strong> رد على رسالتك',sub:'لدينا أرض مناسبة في حي الملقا...',time:'منذ 5 دقائق',type:'msg'},
+  {id:2,unread:true,ico:'🏠',bg:'rgba(92,122,78,0.1)',title:'عرض جديد على <strong>طلبك العقاري</strong>',sub:'أرض 500م² بشارعين في النرجس',time:'منذ 20 دقيقة',type:'offer'},
+  {id:3,unread:true,ico:'⭐',bg:'var(--golddim)',title:'<strong>أحمد العتيبي</strong> قيّم مكتبك بـ 5 نجوم',sub:'تجربة ممتازة وخدمة احترافية',time:'منذ ساعة',type:'rating'},
+  {id:4,unread:false,ico:'✅',bg:'rgba(92,122,78,0.1)',title:'تم التحقق من ترخيص <strong>فال</strong> بنجاح',sub:'رقمك FAL-1234567890 موثق',time:'منذ 3 ساعات',type:'fal'},
+  {id:5,unread:false,ico:'📋',bg:'rgba(44,31,14,0.07)',title:'طلبك العقاري <strong>تلقى 3 ردود</strong> جديدة',sub:'أرض سكنية حي النرجس',time:'البارحة',type:'req'},
+  {id:6,unread:false,ico:'🔔',bg:'rgba(184,132,42,0.08)',title:'مرحباً في منصة <strong>أوتاد</strong>!',sub:'حسابك مفعّل. ابدأ البحث الآن',time:'منذ يومين',type:'sys'},
+];
+
+let notifOpen = false;
+function toggleNotif(){
+  if(!isLoggedIn){requireAuth();return;}
+  notifOpen=!notifOpen;
+  const p=document.getElementById('notif-panel');
+  if(notifOpen){p.classList.add('open');renderNotifs();}
+  else p.classList.remove('open');
+}
+function closeNotif(){notifOpen=false;document.getElementById('notif-panel').classList.remove('open');}
+function renderNotifs(){
+  const el=document.getElementById('np-list');
+  const unread=NOTIFS.filter(n=>n.unread).length;
+  document.getElementById('notif-dot').style.display=unread>0?'block':'none';
+  if(!NOTIFS.length){el.innerHTML='<div class="np-empty">لا توجد إشعارات</div>';return;}
+  el.innerHTML=NOTIFS.map(n=>`
+    <div class="np-item ${n.unread?'unread':''}" onclick="readNotif(${n.id})">
+      <div class="np-ico" style="background:${n.bg}">${n.ico}</div>
+      <div class="np-body">
+        <div class="np-txt">${n.title}</div>
+        <div class="np-txt" style="font-size:11px;color:var(--text3)">${n.sub}</div>
+        <div class="np-time">${n.time}</div>
+      </div>
+      ${n.unread?'<div style="width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px"></div>':''}
+    </div>`).join('');
+}
+function readNotif(id){NOTIFS.find(n=>n.id===id).unread=false;renderNotifs();}
+function markAllRead(){NOTIFS.forEach(n=>n.unread=false);renderNotifs();gToast('تم تعليم جميع الإشعارات كمقروءة ✓');}
+function sendTestNotif(){
+  NOTIFS.unshift({id:Date.now(),unread:true,ico:'🧪',bg:'var(--golddim)',title:'إشعار تجريبي من النظام',sub:'هذا إشعار تجريبي للتأكد من عمل النظام',time:'الآن',type:'test'});
+  renderNotifs();
+  document.getElementById('notif-dot').style.display='block';
+  gToast('🔔 تم إرسال إشعار تجريبي!');
+  if(!notifOpen){notifOpen=true;document.getElementById('notif-panel').classList.add('open');}
+}
+function addNotif(ico,bg,title,sub){
+  NOTIFS.unshift({id:Date.now(),unread:true,ico,bg,title,sub,time:'الآن',type:'auto'});
+  document.getElementById('notif-dot').style.display='block';
+  if(notifOpen)renderNotifs();
+}
+// close notif when clicking outside
+document.addEventListener('click',function(e){
+  if(notifOpen&&!e.target.closest('#notif-panel')&&!e.target.closest('#notif-btn'))closeNotif();
+});
+
+/* ═══════════════════════════════════════════════
+   2. RATING SYSTEM
+═══════════════════════════════════════════════ */
+const REVIEWS_DB = {
+  'مكتب الراشد العقاري':{score:4.8,count:127,dist:{5:85,4:28,3:9,2:3,1:2},reviews:[
+    {name:'محمد العتيبي',av:'م',score:5,date:'منذ أسبوع',txt:'مكتب ممتاز وخدمة احترافية جداً، سرعة في الرد والتواصل'},
+    {name:'سارة القحطاني',av:'س',score:5,date:'منذ أسبوعين',txt:'تعاملت معهم لشراء أرض وكانت التجربة رائعة، ننصح بهم'},
+    {name:'خالد الشمري',av:'خ',score:4,date:'منذ شهر',txt:'خدمة جيدة لكن أحياناً يتأخرون في الرد'},
+  ]},
+};
+let currentRating = 0;
+
+function openRating(name, score, count){
+  if(!requireAuth(()=>openRating(name,score,count)))return;
+  document.getElementById('rating-modal-title').textContent='⭐ تقييم ' + name;
+  const data = REVIEWS_DB[name] || {score,count,dist:{5:70,4:20,3:7,2:2,1:1},reviews:[]};
+  document.getElementById('rating-score').textContent = data.score.toFixed(1);
+  document.getElementById('rating-count').textContent = data.count;
+  // bars
+  const bars = document.getElementById('score-bars');
+  bars.innerHTML = [5,4,3,2,1].map(s=>{
+    const pct = Math.round((data.dist[s]||0)/data.count*100);
+    return`<div class="bar-row">
+      <span>${s}★</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:var(--gold)"></div></div>
+      <span style="font-size:10px;color:var(--text3);width:26px">${pct}%</span>
+    </div>`;
+  }).join('');
+  // reviews
+  const rl = document.getElementById('reviews-list');
+  if(data.reviews.length){
+    rl.innerHTML = data.reviews.map(r=>`
+      <div class="review-item">
+        <div class="review-head">
+          <div class="rev-av">${r.av}</div>
+          <div class="rev-name">${r.name}</div>
+          <div class="rev-date">${r.date}</div>
+        </div>
+        <div class="rev-stars">${'★'.repeat(r.score)}${'☆'.repeat(5-r.score)}</div>
+        <div class="rev-txt">${r.txt}</div>
+      </div>`).join('');
+  } else {
+    rl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text3);font-size:13px">لا توجد تقييمات بعد — كن أول من يقيّم</div>';
+  }
+  currentRating = 0;
+  resetWriteStars();
+  document.getElementById('review-text').value='';
+  document.getElementById('review-success').classList.remove('on');
+  showM('m-rating');
+}
+function setWriteStar(n){currentRating=n;updateWriteStars(n);}
+function hoverStar(n){updateWriteStars(n);}
+function unhoverStar(){updateWriteStars(currentRating);}
+function updateWriteStars(n){document.querySelectorAll('#write-stars .s-star').forEach((s,i)=>s.classList.toggle('lit',i<n));}
+function resetWriteStars(){document.querySelectorAll('#write-stars .s-star').forEach(s=>s.classList.remove('lit'));}
+function submitReview(){
+  if(!currentRating){gToast('⭐ اختر عدد النجوم أولاً');return;}
+  const txt=document.getElementById('review-text').value.trim();
+  if(!txt){gToast('✍️ اكتب تقييمك أولاً');return;}
+  document.getElementById('review-success').classList.add('on');
+  addNotif('⭐','var(--golddim)','شكراً على تقييمك!','تم نشر تقييمك بنجاح');
+  setTimeout(()=>{hideM('m-rating');},2200);
+}
+
+/* ═══════════════════════════════════════════════
+   3. FAL VERIFICATION SYSTEM
+═══════════════════════════════════════════════ */
+const FAL_DB = {
+  'FAL-1234567890':{valid:true,name:'مكتب الراشد العقاري',city:'الرياض',license:'وسيط عقاري معتمد',expire:'2026-12-31',since:'2010'},
+  'FAL-0987654321':{valid:true,name:'النخيل للعقارات',city:'جدة',license:'وسيط عقاري معتمد',expire:'2025-06-30',since:'2015'},
+  'FAL-1111111111':{valid:false,name:null,city:null,license:null,expire:null,since:null},
+};
+let falTimer = null;
+
+function falReset(){
+  document.getElementById('fal-status-box').style.display='none';
+  document.getElementById('fal-details-box').style.display='none';
+  document.getElementById('fal-box').className='fal-box';
+}
+function checkFal(){
+  const num = document.getElementById('fal-input').value.trim().toUpperCase();
+  if(!num){gToast('أدخل رقم الترخيص أولاً');return;}
+  const box=document.getElementById('fal-box');
+  const statusEl=document.getElementById('fal-status-box');
+  const detailsEl=document.getElementById('fal-details-box');
+  const btn=document.getElementById('fal-btn');
+  // show checking state
+  box.className='fal-box checking';
+  statusEl.style.display='flex';
+  statusEl.innerHTML='<span class="fal-status fal-checking-s">⏳ جارٍ التحقق من قاعدة بيانات فال...</span>';
+  detailsEl.style.display='none';
+  btn.disabled=true;btn.textContent='...';
+  // simulate async check
+  clearTimeout(falTimer);
+  falTimer = setTimeout(()=>{
+    btn.disabled=false;btn.textContent='تحقق';
+    const result = FAL_DB[num] || {valid: num.startsWith('FAL-') && num.length>=15 ? true : false};
+    if(result.valid && result.name){
+      box.className='fal-box valid';
+      statusEl.innerHTML='<span class="fal-status fal-valid">✅ الترخيص صالح وموثق من الهيئة العقارية</span>';
+      detailsEl.style.display='block';
+      detailsEl.innerHTML=`<strong>اسم المكتب:</strong> ${result.name}<br><strong>المدينة:</strong> ${result.city}<br><strong>نوع الترخيص:</strong> ${result.license}<br><strong>تاريخ الانتهاء:</strong> ${result.expire}<br><strong>سنة الترخيص الأولى:</strong> ${result.since}`;
+      addNotif('✅','rgba(92,122,78,0.1)','تم التحقق من الترخيص','رقم فال '+num+' موثق وصالح');
+    } else if(result.valid){
+      box.className='fal-box valid';
+      statusEl.innerHTML='<span class="fal-status fal-valid">✅ الترخيص صالح — بيانات إضافية غير متوفرة</span>';
+    } else {
+      box.className='fal-box invalid';
+      statusEl.innerHTML='<span class="fal-status fal-invalid">❌ الترخيص غير صالح أو غير موجود في قاعدة البيانات</span>';
+      detailsEl.style.display='block';
+      detailsEl.innerHTML='تأكد من صحة الرقم أو تواصل مع الهيئة العقارية السعودية على الرقم 19994';
+    }
+    statusEl.style.display='block';
+  },1800);
+}
+function quickCheckFal(){
+  const num=document.getElementById('r-fal').value.trim().toUpperCase();
+  if(!num){gToast('أدخل رقم فال أولاً');return;}
+  const statusEl=document.getElementById('reg-fal-status');
+  statusEl.style.display='block';
+  statusEl.style.background='var(--golddim)';statusEl.style.color='var(--gold)';
+  statusEl.textContent='⏳ جارٍ التحقق...';
+  setTimeout(()=>{
+    const r=FAL_DB[num];
+    if(r&&r.valid&&r.name){
+      statusEl.style.background='rgba(92,122,78,0.1)';statusEl.style.color='var(--sage)';
+      statusEl.textContent='✅ موثق — '+r.name;
+    } else if(num.startsWith('FAL-')&&num.length>=15){
+      statusEl.style.background='rgba(92,122,78,0.1)';statusEl.style.color='var(--sage)';
+      statusEl.textContent='✅ الترخيص صالح';
+    } else {
+      statusEl.style.background='rgba(160,82,45,0.1)';statusEl.style.color='var(--terracotta)';
+      statusEl.textContent='❌ رقم غير صالح';
+    }
+  },1500);
+}
+
+/* ═══════════════════════════════════════════════
+   4. ADMIN PANEL
+═══════════════════════════════════════════════ */
+let adminLoggedIn = false;
+const ADMIN_USERS = [
+  {nm:'أحمد العتيبي',av:'أ',color:'#2c1f0e',type:'وسيط',phone:'0501234567',date:'2025-01-15',status:'active'},
+  {nm:'سارة القحطاني',av:'س',color:'#5c7a4e',type:'مستثمر',phone:'0559876543',date:'2025-01-14',status:'active'},
+  {nm:'خالد الشمري',av:'خ',color:'#a0522d',type:'مالك',phone:'0508877665',date:'2025-01-13',status:'active'},
+  {nm:'فهد الدوسري',av:'ف',color:'#54401e',type:'وسيط',phone:'0531122334',date:'2025-01-12',status:'pending'},
+  {nm:'ريم الحربي',av:'ر',color:'#b8842a',type:'باحث',phone:'0545566778',date:'2025-01-10',status:'active'},
+  {nm:'محمد السهلي',av:'م',color:'#3d2c14',type:'مستثمر',phone:'0512233445',date:'2025-01-08',status:'blocked'},
+  {nm:'نورة العمري',av:'ن',color:'#5c7a4e',type:'وسيط',phone:'0505544332',date:'2025-01-07',status:'active'},
+];
+const PENDING_OFFICES = [
+  {nm:'مكتب الأمانة العقاري',city:'الرياض',fal:'FAL-2024001122',date:'منذ يوم'},
+  {nm:'بيوت الخليج',city:'الدمام',fal:'FAL-2024003344',date:'منذ يومين'},
+  {nm:'دار الإعمار',city:'جدة',fal:'FAL-2024005566',date:'منذ 3 أيام'},
+  {nm:'مكتب الوطن',city:'مكة',fal:'FAL-2024007788',date:'منذ أسبوع'},
+];
+const FAL_QUEUE = [
+  {nm:'فهد الدوسري',fal:'FAL-2024009900',type:'وسيط',date:'اليوم'},
+  {nm:'عبدالله القحطاني',fal:'FAL-2024001234',type:'وسيط',date:'البارحة'},
+  {nm:'مريم الزهراني',fal:'FAL-2024005678',type:'وسيط',date:'منذ يومين'},
+];
+const REPORTS = [
+  {from:'خالد العتيبي',against:'مكتب المدار',reason:'عدم الرد على الرسائل',date:'اليوم',status:'جديد'},
+  {from:'أحمد السيد',against:'مستخدم مجهول',reason:'رسائل مزعجة',date:'البارحة',status:'قيد المراجعة'},
+  {from:'نورة الشمري',against:'مكتب الأفق',reason:'معلومات مضللة',date:'منذ 3 أيام',status:'جديد'},
+];
+const CHART_DATA=[{day:'الاثنين',msgs:145,reqs:32},{day:'الثلاثاء',msgs:198,reqs:45},{day:'الأربعاء',msgs:167,reqs:38},{day:'الخميس',msgs:234,reqs:67},{day:'الجمعة',msgs:89,reqs:21},{day:'السبت',msgs:312,reqs:78},{day:'الأحد',msgs:278,reqs:61}];
+
+function adminLogin(){
+  const u=document.getElementById('adm-user').value;
+  const p=document.getElementById('adm-pass').value;
+  const err=document.getElementById('adm-err');
+  if(u==='admin'&&p==='admin123'){
+    adminLoggedIn=true;
+    document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-panel').style.display='block';
+    renderAdminPanel();
+  } else {
+    err.style.display='block';err.textContent='❌ بيانات الدخول غير صحيحة';
+  }
+}
+function adminLogout(){
+  adminLoggedIn=false;
+  document.getElementById('admin-login').style.display='flex';
+  document.getElementById('admin-panel').style.display='none';
+}
+function renderAdminPanel(){
+  renderUsersTable(ADMIN_USERS);
+  // pending offices
+  const po=document.getElementById('pending-offices');
+  po.innerHTML=PENDING_OFFICES.map(o=>`
+    <div class="user-row">
+      <div class="user-av-sm" style="background:var(--earth2)">${o.nm.charAt(0)}</div>
+      <div class="user-info">
+        <div class="user-nm">${o.nm}</div>
+        <div class="user-role">${o.city} · ${o.fal} · ${o.date}</div>
+      </div>
+      <button class="admin-action-btn" onclick="this.textContent='✅';this.style.color='var(--sage)';gToast('تمت الموافقة على '+'${o.nm}')">موافقة</button>
+      <button class="admin-action-btn danger" onclick="this.closest('.user-row').style.opacity='.4';gToast('تم الرفض')">رفض</button>
+    </div>`).join('');
+  // fal queue
+  const fq=document.getElementById('fal-queue');
+  fq.innerHTML=FAL_QUEUE.map(f=>`
+    <div class="user-row">
+      <div class="user-av-sm" style="background:var(--gold);color:var(--earth)">${f.nm.charAt(0)}</div>
+      <div class="user-info">
+        <div class="user-nm">${f.nm}</div>
+        <div class="user-role">${f.fal} · ${f.date}</div>
+      </div>
+      <button class="admin-action-btn" onclick="this.textContent='✅ موثق';this.style.color='var(--sage)';gToast('تم التوثيق')">توثيق</button>
+    </div>`).join('');
+  // activity chart
+  const ac=document.getElementById('activity-chart');
+  const maxMsgs=Math.max(...CHART_DATA.map(d=>d.msgs));
+  ac.innerHTML=CHART_DATA.map(d=>`
+    <div class="chart-bar-row">
+      <span class="chart-bar-label">${d.day}</span>
+      <div class="chart-bar-track">
+        <div class="chart-bar-fill" style="width:${Math.round(d.msgs/maxMsgs*100)}%;background:var(--earth)">
+          <span class="chart-bar-val">${d.msgs}</span>
+        </div>
+      </div>
+    </div>`).join('');
+  initInvDate();
+  // reports
+  const rl=document.getElementById('reports-list');
+  rl.innerHTML=REPORTS.map(r=>`
+    <div class="user-row">
+      <div class="user-av-sm" style="background:var(--terracotta)">⚠️</div>
+      <div class="user-info">
+        <div class="user-nm">${r.against}</div>
+        <div class="user-role">${r.from} · ${r.reason} · ${r.date}</div>
+      </div>
+      <span class="tbl-badge ${r.status==='جديد'?'tbl-pending':'tbl-active'}">${r.status}</span>
+    </div>`).join('');
+}
+function renderUsersTable(users){
+  const tbody=document.getElementById('users-tbody');
+  const statusMap={active:'تbl-active نشط',pending:'tbl-pending قيد المراجعة',blocked:'tbl-blocked محظور'};
+  const typeMap={'وسيط':'ub-broker','مستثمر':'ub-investor','مالك':'ub-owner','باحث':'ub-seeker'};
+  tbody.innerHTML=users.map(u=>`
+    <tr>
+      <td><div style="display:flex;align-items:center;gap:8px">
+        <div class="user-av-sm" style="background:${u.color};width:26px;height:26px;font-size:11px">${u.av}</div>
+        <span style="font-weight:600;color:var(--earth)">${u.nm}</span>
+      </div></td>
+      <td><span class="user-badge ${typeMap[u.type]||'ub-seeker'}">${u.type}</span></td>
+      <td style="direction:ltr">${u.phone}</td>
+      <td>${u.date}</td>
+      <td><span class="tbl-badge ${u.status==='active'?'tbl-active':u.status==='pending'?'tbl-pending':'tbl-blocked'}">${u.status==='active'?'نشط':u.status==='pending'?'قيد المراجعة':'محظور'}</span></td>
+      <td><div style="display:flex;gap:4px">
+        <button class="admin-action-btn" onclick="gToast('عرض ملف '+'${u.nm}')">عرض</button>
+        <button class="admin-action-btn danger" onclick="gToast('تم تغيير حالة '+'${u.nm}')">تغيير الحالة</button>
+      </div></td>
+    </tr>`).join('');
+}
+/* ═══════════════════════════════════════════════
+   INVESTIGATION & SEARCH SYSTEM
+═══════════════════════════════════════════════ */
+const INV_DB=[
+  {id:'u1',nm:'أحمد العتيبي',av:'أ',color:'#2c1f0e',type:'وسيط',phone:'0501234567',email:'ahmed@awtad.sa',city:'الرياض',date:'2025-01-15',fal:'FAL-1234567890',status:'active',
+   ads:[
+     {ico:'🗺️',bg:'rgba(160,82,45,0.1)',title:'أرض سكنية — حي النرجس، الرياض',kind:'طلب',price:'700,000–1,200,000 ريال',area:'400–600 م²',date:'2025-01-20',status:'نشط'},
+     {ico:'🏠',bg:'rgba(92,122,78,0.1)',title:'فيلا 4 غرف — حي الملقا',kind:'عرض',price:'2,100,000 ريال',area:'450 م²',date:'2025-01-18',status:'نشط'},
+     {ico:'🏢',bg:'rgba(44,31,14,0.07)',title:'شقة 3 غرف — حي العليا',kind:'طلب',price:'350,000 ريال',area:'150 م²',date:'2025-01-10',status:'منتهي'},
+   ],
+   msgs:[
+     {with:'مكتب الراشد العقاري',color:'#2c1f0e',count:8,last:'لدينا أرض مناسبة في الملقا',lastTime:'منذ 20 دقيقة',
+      thread:[
+       {from:'me',av:'أ',c:'#b8842a',txt:'السلام عليكم، أبحث عن أرض في النرجس',time:'10:15 ص'},
+       {from:'other',av:'ر',c:'#2c1f0e',txt:'لدينا قطعة 480م² بشارعين بسعر 850,000 ريال',time:'10:20 ص'},
+       {from:'me',av:'أ',c:'#b8842a',txt:'هل الموقع قريب من الخدمات؟',time:'10:22 ص'},
+       {from:'other',av:'ر',c:'#2c1f0e',txt:'نعم على بعد 500 متر من مسجد ومدرسة',time:'10:25 ص'},
+     ]},
+     {with:'النخيل للعقارات',color:'#5c7a4e',count:3,last:'هل تقبل بموقع بديل في الروضة؟',lastTime:'البارحة',
+      thread:[
+       {from:'other',av:'ن',c:'#5c7a4e',txt:'مرحباً، عندنا عرض مناسب لطلبك',time:'أمس 09:00 ص'},
+       {from:'me',av:'أ',c:'#b8842a',txt:'شكراً، ما هو السعر؟',time:'أمس 09:30 ص'},
+       {from:'other',av:'ن',c:'#5c7a4e',txt:'هل تقبل بموقع بديل في الروضة؟',time:'أمس 10:00 ص'},
+     ]},
+   ],
+   activity:[
+     {dot:'var(--sage)',txt:'أضاف طلب أرض سكنية في النرجس',time:'2025-01-20 10:15'},
+     {dot:'var(--gold)',txt:'راسل مكتب الراشد 4 مرات',time:'2025-01-20 10:15'},
+     {dot:'var(--earth2)',txt:'نشر عرض فيلا في الملقا',time:'2025-01-18 14:30'},
+     {dot:'var(--terracotta)',txt:'تسجيل دخول من الرياض',time:'2025-01-20 09:00'},
+   ],
+   reports:[]},
+
+  {id:'u2',nm:'سارة القحطاني',av:'س',color:'#5c7a4e',type:'مستثمر',phone:'0559876543',email:'sara@email.com',city:'جدة',date:'2025-01-14',fal:'',status:'active',
+   ads:[
+     {ico:'🏠',bg:'rgba(92,122,78,0.1)',title:'شقة 3 غرف — حي الروضة، جدة',kind:'طلب',price:'حتى 400,000 ريال',area:'150–200 م²',date:'2025-01-19',status:'نشط'},
+   ],
+   msgs:[
+     {with:'مكتب المدار العقاري',color:'#a0522d',count:5,last:'لدينا شقة مناسبة بالدور الثالث',lastTime:'اليوم',
+      thread:[
+       {from:'me',av:'س',c:'#5c7a4e',txt:'أبحث عن شقة 3 غرف في الروضة',time:'09:00 ص'},
+       {from:'other',av:'م',c:'#a0522d',txt:'يسعدنا خدمتك، لدينا شقة مناسبة',time:'09:30 ص'},
+       {from:'me',av:'س',c:'#5c7a4e',txt:'ما هو السعر؟',time:'09:45 ص'},
+       {from:'other',av:'م',c:'#a0522d',txt:'320,000 ريال شاملة الدور الثالث بمصعد',time:'10:00 ص'},
+     ]},
+   ],
+   activity:[
+     {dot:'var(--sage)',txt:'أضافت طلب شقة في جدة',time:'2025-01-19 09:00'},
+     {dot:'var(--gold)',txt:'راسلت 3 مكاتب عقارية',time:'2025-01-19 09:30'},
+   ],
+   reports:[]},
+
+  {id:'u3',nm:'مكتب الراشد العقاري',av:'ر',color:'#2c1f0e',type:'مكتب',phone:'0501234567',email:'rashid@office.sa',city:'الرياض',date:'2024-03-10',fal:'FAL-1234567890',status:'active',
+   ads:[
+     {ico:'🗺️',bg:'rgba(160,82,45,0.1)',title:'أرض 500م² — حي الملقا، شارعين',kind:'عرض',price:'850,000 ريال',area:'500 م²',date:'2025-01-15',status:'نشط'},
+     {ico:'🏡',bg:'rgba(92,122,78,0.1)',title:'فيلا 5 غرف مسبح — الرحمانية',kind:'عرض',price:'3,200,000 ريال',area:'600 م²',date:'2025-01-12',status:'نشط'},
+     {ico:'🏢',bg:'rgba(44,31,14,0.07)',title:'شقة دوبلكس — العليا',kind:'عرض',price:'480,000 ريال',area:'220 م²',date:'2025-01-08',status:'نشط'},
+   ],
+   msgs:[
+     {with:'أحمد العتيبي',color:'#b8842a',count:8,last:'نعم على بعد 500 متر من مسجد',lastTime:'منذ 20 دقيقة',
+      thread:[
+       {from:'other',av:'أ',c:'#b8842a',txt:'أبحث عن أرض في النرجس بمساحة 400م²',time:'10:15 ص'},
+       {from:'me',av:'ر',c:'#2c1f0e',txt:'لدينا قطعة 480م² بشارعين بسعر 850,000',time:'10:20 ص'},
+       {from:'other',av:'أ',c:'#b8842a',txt:'هل الموقع قريب من الخدمات؟',time:'10:22 ص'},
+       {from:'me',av:'ر',c:'#2c1f0e',txt:'نعم 500 متر من مسجد ومدرسة وسوبرماركت',time:'10:25 ص'},
+     ]},
+     {with:'خالد الشمري',color:'#54401e',count:4,last:'موعد المعاينة غداً الساعة 3 عصراً',lastTime:'منذ ساعة',
+      thread:[
+       {from:'other',av:'خ',c:'#54401e',txt:'أريد معاينة الفيلا في الرحمانية',time:'08:00 ص'},
+       {from:'me',av:'ر',c:'#2c1f0e',txt:'أهلاً، موعد المعاينة غداً الساعة 3 عصراً',time:'08:30 ص'},
+       {from:'other',av:'خ',c:'#54401e',txt:'ممتاز، سأكون هناك',time:'08:35 ص'},
+       {from:'me',av:'ر',c:'#2c1f0e',txt:'بإنتظارك، سيكون المفتاح معنا',time:'08:40 ص'},
+     ]},
+   ],
+   activity:[
+     {dot:'var(--sage)',txt:'نشر 3 عروض عقارية جديدة',time:'2025-01-15 09:00'},
+     {dot:'var(--gold)',txt:'رد على 12 رسالة من العملاء',time:'2025-01-20 10:00'},
+     {dot:'var(--earth2)',txt:'تجديد ترخيص فال',time:'2025-01-01 00:00'},
+   ],
+   reports:[{from:'عميل مجهول',reason:'تأخر في الرد على الرسائل',date:'2025-01-18',status:'قيد المراجعة'}]},
+
+  {id:'u4',nm:'خالد الشمري',av:'خ',color:'#54401e',type:'وسيط',phone:'0508877665',email:'khalid@email.sa',city:'الرياض',date:'2025-01-13',fal:'FAL-0987654321',status:'active',
+   ads:[
+     {ico:'🏡',bg:'rgba(92,122,78,0.1)',title:'فيلا 5 غرف بمسبح — شمال الرياض',kind:'طلب',price:'2,500,000–4,000,000 ريال',area:'500+ م²',date:'2025-01-17',status:'نشط'},
+   ],
+   msgs:[
+     {with:'مكتب الراشد العقاري',color:'#2c1f0e',count:4,last:'موعد المعاينة غداً الساعة 3',lastTime:'منذ ساعة',
+      thread:[
+       {from:'me',av:'خ',c:'#54401e',txt:'أريد معاينة الفيلا في الرحمانية',time:'08:00 ص'},
+       {from:'other',av:'ر',c:'#2c1f0e',txt:'موعد المعاينة غداً الساعة 3 عصراً',time:'08:30 ص'},
+       {from:'me',av:'خ',c:'#54401e',txt:'ممتاز سأكون هناك',time:'08:35 ص'},
+     ]},
+   ],
+   activity:[
+     {dot:'var(--sage)',txt:'أضاف طلب فيلا في شمال الرياض',time:'2025-01-17 14:00'},
+     {dot:'var(--gold)',txt:'راسل مكتب الراشد',time:'2025-01-20 08:00'},
+   ],
+   reports:[]},
+
+  {id:'u5',nm:'مكتب الغانم العقاري',av:'غ',color:'#b8842a',type:'مكتب',phone:'0512233445',email:'ghanem@office.sa',city:'الرياض',date:'2020-06-01',fal:'FAL-9988776655',status:'active',
+   ads:[
+     {ico:'🏗️',bg:'rgba(184,132,42,0.08)',title:'أرض تجارية — طريق الملك عبدالعزيز',kind:'عرض',price:'3,000,000 ريال',area:'1000 م²',date:'2025-01-16',status:'نشط'},
+     {ico:'🏪',bg:'rgba(92,122,78,0.1)',title:'محلات تجارية — حي العليا',kind:'عرض',price:'إيجار 200,000/سنة',area:'400 م²',date:'2025-01-14',status:'نشط'},
+   ],
+   msgs:[
+     {with:'سارة القحطاني',color:'#5c7a4e',count:2,last:'شكراً لتواصلك معنا',lastTime:'منذ يومين',
+      thread:[
+       {from:'other',av:'س',c:'#5c7a4e',txt:'هل لديكم أراضي تجارية للاستثمار؟',time:'البارحة 11:00 ص'},
+       {from:'me',av:'غ',c:'#b8842a',txt:'نعم، لدينا عدة قطع بمواقع ممتازة',time:'البارحة 11:30 ص'},
+     ]},
+   ],
+   activity:[
+     {dot:'var(--gold)',txt:'نشر إعلانين تجاريين',time:'2025-01-16 08:00'},
+     {dot:'var(--sage)',txt:'تجديد الاشتراك السنوي',time:'2025-01-01 00:00'},
+   ],
+   reports:[]},
+];
+
+let invDateRange='today', currentInvUser=null;
+
+function initInvDate(){
+  const d=document.getElementById('inv-date');
+  if(d){const t=new Date();d.value=t.toISOString().split('T')[0];}
+}
+
+function setInvDate(range,btn){
+  document.querySelectorAll('.inv-date-quick').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  invDateRange=range;
+  const d=document.getElementById('inv-date');
+  const t=new Date();
+  if(range==='today') d.value=t.toISOString().split('T')[0];
+  else if(range==='yesterday'){const y=new Date(t);y.setDate(y.getDate()-1);d.value=y.toISOString().split('T')[0];}
+  else d.value='';
+  liveInvSearch(document.getElementById('inv-q').value);
+}
+
+function liveInvSearch(q){
+  const type=document.getElementById('inv-type').value;
+  const dateVal=document.getElementById('inv-date').value;
+  const res=document.getElementById('inv-results');
+  if(!q.trim()&&!type){
+    res.innerHTML='<div style="text-align:center;padding:28px;color:var(--text3);font-size:13px"><div style="font-size:32px;margin-bottom:8px">🔍</div>ابدأ الكتابة للبحث عن مستخدم أو مكتب...</div>';
+    return;
+  }
+  const ql=q.trim();
+  const filtered=INV_DB.filter(u=>{
+    const mq=!ql||u.nm.includes(ql)||u.phone.includes(ql)||u.email.includes(ql.toLowerCase())||u.city.includes(ql);
+    const mt=!type||u.type===type;
+    return mq&&mt;
+  });
+  if(!filtered.length){
+    res.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3);font-size:13px"><div style="font-size:28px;margin-bottom:8px">😕</div>لا توجد نتائج مطابقة</div>';
+    closeInvProfile();return;
+  }
+  const typeIco={'وسيط':'🏢','مستثمر':'💰','مالك':'🏠','باحث':'🔍','مكتب':'🏛️'};
+  const stLabel={'active':'نشط','pending':'قيد المراجعة','blocked':'محظور'};
+  const stColor={'active':'var(--sage)','pending':'var(--gold)','blocked':'var(--terracotta)'};
+  const dateLabel=dateVal?'— بتاريخ '+dateVal:'';
+  res.innerHTML=`<div style="font-size:11px;color:var(--text3);margin-bottom:10px;font-weight:600">${filtered.length} نتيجة ${dateLabel}</div>`
+  +filtered.map(u=>`
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--r2);background:var(--sand);margin-bottom:8px;cursor:pointer;transition:all .2s" onclick="openInvProfile('${u.id}')" onmouseover="this.style.borderColor='var(--gold)';this.style.background='var(--golddim2)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--sand)'">
+      <div style="width:42px;height:42px;border-radius:50%;background:${u.color};display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;flex-shrink:0">${u.av}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:700;color:var(--earth);margin-bottom:3px">${u.nm}</div>
+        <div style="font-size:11px;color:var(--text3)">
+          ${typeIco[u.type]||'👤'} ${u.type} &nbsp;·&nbsp; 📍 ${u.city} &nbsp;·&nbsp; 📞 ${u.phone} &nbsp;·&nbsp; 📅 ${u.date}
+          ${u.fal?'&nbsp;·&nbsp; <span style="color:var(--sage);font-weight:600">✅ فال</span>':''}
+        </div>
+        <div style="display:flex;gap:6px;margin-top:5px;flex-wrap:wrap">
+          <span style="font-size:10px;background:rgba(44,31,14,0.07);color:var(--earth2);padding:2px 8px;border-radius:20px">📢 ${u.ads.length} إعلان</span>
+          <span style="font-size:10px;background:var(--golddim);color:var(--gold);padding:2px 8px;border-radius:20px">💬 ${u.msgs.reduce((a,m)=>a+m.count,0)} رسالة</span>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:${stColor[u.status]}18;color:${stColor[u.status]}">${stLabel[u.status]||u.status}</span>
+          ${u.reports.length?`<span style="font-size:10px;background:rgba(160,82,45,0.1);color:var(--terracotta);padding:2px 8px;border-radius:20px">⚠️ ${u.reports.length} بلاغ</span>`:''}
+        </div>
+      </div>
+      <button onclick="event.stopPropagation();openInvProfile('${u.id}')" style="padding:8px 14px;background:var(--earth);color:var(--sand);border:none;border-radius:var(--r2);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--earth)'" onmouseout="this.style.background='var(--earth)';this.style.color='var(--sand)'">استعراض كامل ←</button>
+    </div>`).join('');
+}
+
+function clearInvSearch(){
+  document.getElementById('inv-q').value='';
+  document.getElementById('inv-type').value='';
+  document.getElementById('inv-results').innerHTML='<div style="text-align:center;padding:28px;color:var(--text3);font-size:13px"><div style="font-size:32px;margin-bottom:8px">🔍</div>ابدأ الكتابة للبحث عن مستخدم أو مكتب...</div>';
+  closeInvProfile();
+}
+
+function openInvProfile(id){
+  const u=INV_DB.find(x=>x.id===id);
+  if(!u)return;
+  currentInvUser=u;
+  const panel=document.getElementById('inv-profile-panel');
+  const av=document.getElementById('inv-profile-av');
+  av.textContent=u.av;av.style.background=u.color;
+  document.getElementById('inv-profile-name').textContent=u.nm;
+  document.getElementById('inv-profile-meta').innerHTML=
+    `📅 ${u.date} &nbsp;·&nbsp; 📍 ${u.city} &nbsp;·&nbsp; 📞 ${u.phone} &nbsp;·&nbsp; ✉️ ${u.email}`+
+    (u.fal?` &nbsp;·&nbsp; <span style="color:var(--sage);font-weight:700">✅ فال: ${u.fal}</span>`:'');
+  document.getElementById('inv-profile-stats').innerHTML=[
+    {ico:'📢',n:u.ads.length,l:'إعلان ونشاط',c:'var(--earth)'},
+    {ico:'💬',n:u.msgs.reduce((a,m)=>a+m.count,0),l:'رسالة مُرسلة',c:'var(--gold)'},
+    {ico:'🤝',n:u.msgs.length,l:'محادثة نشطة',c:'var(--sage)'},
+    {ico:'⚠️',n:u.reports.length,l:'بلاغ',c:u.reports.length?'var(--terracotta)':'var(--sage)'},
+  ].map(s=>`<div style="background:var(--sand);border:1px solid var(--border);border-radius:var(--r2);padding:12px;text-align:center"><div style="font-size:20px;margin-bottom:4px">${s.ico}</div><div style="font-family:'Amiri',serif;font-size:22px;font-weight:700;color:${s.c}">${s.n}</div><div style="font-size:10px;color:var(--text3)">${s.l}</div></div>`).join('');
+  panel.style.display='block';
+  // default to ads tab
+  switchInvTab('ads',document.querySelector('#inv-profile-panel .inv-tab.on')||document.querySelector('#inv-profile-panel .inv-tab'));
+  panel.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function closeInvProfile(){
+  document.getElementById('inv-profile-panel').style.display='none';
+  currentInvUser=null;
+}
+
+function switchInvTab(tab,btn){
+  document.querySelectorAll('#inv-profile-panel .inv-tab').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  else{const b=document.querySelector('#inv-profile-panel .inv-tab[onclick*="'+tab+'"]');if(b)b.classList.add('on');}
+  document.querySelectorAll('.inv-tab-content').forEach(c=>c.style.display='none');
+  const el=document.getElementById('inv-tab-'+tab);
+  if(el)el.style.display='block';
+  const u=currentInvUser;if(!u)return;
+
+  if(tab==='ads'){
+    el.innerHTML=(!u.ads.length
+      ?'<div style="text-align:center;padding:20px;color:var(--text3);font-size:13px">لا توجد إعلانات</div>'
+      :`<div style="margin-bottom:8px;font-size:11px;color:var(--text3);font-weight:600">${u.ads.length} إعلان وطلب</div>`
+      +u.ads.map(a=>`
+        <div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start">
+          <div style="width:38px;height:38px;border-radius:var(--r2);background:${a.bg};display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">${a.ico}</div>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:700;color:var(--earth);margin-bottom:4px">${a.title}</div>
+            <div style="display:flex;gap:8px;font-size:11px;color:var(--text3);flex-wrap:wrap">
+              <span>📅 ${a.date}</span><span>💰 ${a.price}</span><span>📐 ${a.area}</span>
+            </div>
+          </div>
+          <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--golddim);color:var(--gold)">${a.kind}</span>
+          <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:${a.status==='نشط'?'rgba(92,122,78,0.1)':'rgba(160,82,45,0.1)'};color:${a.status==='نشط'?'var(--sage)':'var(--terracotta)'}">${a.status}</span>
+        </div>`).join(''));
+  }
+
+  else if(tab==='msgs'){
+    el.innerHTML=(!u.msgs.length
+      ?'<div style="text-align:center;padding:20px;color:var(--text3);font-size:13px">لا توجد محادثات</div>'
+      :`<div style="margin-bottom:10px;font-size:11px;color:var(--text3);font-weight:600">${u.msgs.length} محادثة — انقر لعرض الرسائل الكاملة</div>`
+      +u.msgs.map((m,i)=>`
+        <div style="border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:10px">
+          <div style="background:var(--sand2);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid var(--border)" onclick="toggleMsgThread(${i})">
+            <div>
+              <div style="font-size:12px;font-weight:700;color:var(--earth);margin-bottom:2px">💬 مع ${m.with} &nbsp;<span style="font-size:10px;background:var(--golddim);color:var(--gold);padding:2px 6px;border-radius:10px">${m.count} رسالة</span></div>
+              <div style="font-size:10px;color:var(--text3)">"${m.last.length>55?m.last.slice(0,55)+'...':m.last}" · ${m.lastTime}</div>
+            </div>
+            <span style="font-size:11px;color:var(--gold);font-weight:600" id="inv-arrow-${i}">▼ عرض</span>
+          </div>
+          <div style="display:none;padding:12px 14px;max-height:240px;overflow-y:auto;background:var(--card)" id="inv-thread-${i}">
+            ${m.thread.map(msg=>`
+              <div style="display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;${msg.from==='me'?'flex-direction:row-reverse;':'' }">
+                <div style="width:26px;height:26px;border-radius:50%;background:${msg.c};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0">${msg.av}</div>
+                <div>
+                  <div style="background:${msg.from==='me'?'var(--earth)':'var(--sand2)'};color:${msg.from==='me'?'var(--sand)':'var(--text)'};border-radius:var(--r2);padding:8px 12px;font-size:12px;max-width:240px">${msg.txt}</div>
+                  <div style="font-size:9px;color:var(--text3);margin-top:3px${msg.from==='me'?';text-align:right':''}">${msg.time} · ${msg.from==='me'?u.nm:m.with}</div>
+                </div>
+              </div>`).join('')}
+          </div>
+        </div>`).join(''));
+  }
+
+  else if(tab==='activity'){
+    el.innerHTML=(!u.activity.length
+      ?'<div style="text-align:center;padding:20px;color:var(--text3);font-size:13px">لا يوجد نشاط</div>'
+      :`<div style="margin-bottom:8px;font-size:11px;color:var(--text3);font-weight:600">سجل كامل للنشاط</div>`
+      +u.activity.map(a=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--text2)">
+          <div style="width:7px;height:7px;border-radius:50%;background:${a.dot};flex-shrink:0"></div>
+          <span style="flex:1">${a.txt}</span>
+          <span style="font-size:10px;color:var(--text3);white-space:nowrap">${a.time}</span>
+        </div>`).join(''));
+  }
+
+  else if(tab==='reports'){
+    el.innerHTML=(!u.reports.length
+      ?'<div style="text-align:center;padding:24px;color:var(--sage);font-size:13px"><div style="font-size:28px;margin-bottom:8px">✅</div>لا توجد بلاغات ضد هذا المستخدم</div>'
+      :u.reports.map(r=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--terracotta);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px">⚠️</div>
+          <div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--earth)">من: ${r.from}</div><div style="font-size:11px;color:var(--text3)">${r.reason} · ${r.date}</div></div>
+          <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--golddim);color:var(--gold)">${r.status}</span>
+          <button onclick="gToast('تمت معالجة البلاغ ✓')" style="padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:none;font-family:inherit;font-size:11px;cursor:pointer;color:var(--text3)">معالجة</button>
+        </div>`).join(''));
+  }
+}
+
+function toggleMsgThread(i){
+  const body=document.getElementById('inv-thread-'+i);
+  const arrow=document.getElementById('inv-arrow-'+i);
+  if(!body)return;
+  const isOpen=body.style.display!=='none';
+  body.style.display=isOpen?'none':'block';
+  arrow.textContent=isOpen?'▼ عرض':'▲ إخفاء';
+}
+
+// CSS for investigation panel tabs
+(function(){
+  const style=document.createElement('style');
+  style.textContent=`
+    .inv-date-quick{padding:6px 16px;background:var(--card);border:1px solid var(--border);border-radius:20px;font-family:'Tajawal',sans-serif;font-size:12px;color:var(--text3);cursor:pointer;transition:all .2s}
+    .inv-date-quick.on{background:var(--earth);color:var(--sand);border-color:var(--earth)}
+    .inv-date-quick:hover:not(.on){border-color:var(--gold);color:var(--gold)}
+    .inv-tab{padding:7px 14px;border-radius:var(--r2);font-size:12px;font-weight:600;cursor:pointer;background:none;border:none;color:var(--text3);font-family:'Tajawal',sans-serif;transition:all .2s}
+    .inv-tab.on{background:var(--card);color:var(--earth);font-weight:700;box-shadow:0 1px 4px rgba(26,18,10,0.08)}
+    .inv-tab:hover:not(.on){color:var(--text2)}
+    .inv-tab-content{animation:fadeUp .2s ease both}
+  `;
+  document.head.appendChild(style);
+})();
+
+function filterAdminUsers(q,type){
+  const filtered=ADMIN_USERS.filter(u=>
+    (!q||u.nm.includes(q)||u.phone.includes(q))&&(!type||u.type.includes(type))
+  );
+  renderUsersTable(filtered);
+}
+
+/* show admin nav for logged-in user (demo: always show) */
+function checkAdminAccess(){
+  const btn=document.getElementById('admin-nav-btn');
+  if(btn&&isLoggedIn)btn.style.display='';
+}
+
+/* guest interception */
+document.addEventListener('click', function(e){
+  if(!document.body.classList.contains('guest')) return;
+  const blocked = e.target.closest('.oc-acts, .contact-row, .req-acts, .l-acts, .btn-call, .btn-inner, .btn-wa, .btn-tel, .btn-offer, .btn-det, .btn-cnt, .btn-msg, .btn-fav');
+  if(blocked){
+    e.preventDefault(); e.stopPropagation();
+    showGate('يجب التسجيل للتواصل','التسجيل مجاني بالكامل — سجّل الآن وابدأ التواصل فوراً');
+  }
+}, true);
+document.body.classList.add('guest');
+
+</script>
+</body>
+</html>
